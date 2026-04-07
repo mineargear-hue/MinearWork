@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MinearWorks — Books, Services & Trade Knowledge by Minear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --black: #0a0a0a;
+    --off-black: #111111;
+    --charcoal: #1c1c1c;
+    --steel: #2e2e2e;
+    --smoke: #444;
+    --mid: #888;
+    --silver: #b8b8b8;
+    --cream: #f5f0e8;
+    --parchment: #ede7d9;
+    --amber: #d4871a;
+    --amber-dark: #b06a0a;
+    --amber-light: #f0a83c;
+    --electric: #ffe066;
+    --danger: #cc3b1a;
+    --copper: #9b4f1a;
+    --copper-light: #c97b3a;
+    --steam: #7aa8b8;
+    --white: #fafaf8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.4;
+  }
+
+  /* ── HEADER / NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,135,26,0.18);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--amber); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.2rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 400;
+    color: var(--silver); text-decoration: none;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--amber-light); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--black) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    transition: background 0.25s !important;
+  }
+
+  .nav-cta:hover { background: var(--amber-light) !important; color: var(--black) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 0;
+    padding-top: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(212,135,26,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 80% at 20% 80%, rgba(30,30,30,0.9) 0%, transparent 60%),
+      linear-gradient(160deg, #0a0a0a 0%, #111 50%, #0d0d0d 100%);
+    z-index: 0;
+  }
+
+  /* Wiring pattern */
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(212,135,26,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,135,26,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 1;
+  }
+
+  .hero-left {
+    position: relative; z-index: 2;
+    padding: 6rem 4rem 6rem 6rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 400;
+    color: var(--amber);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 2rem; height: 1px;
+    background: var(--amber);
+    display: inline-block;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--amber);
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-style: italic;
+    color: var(--silver);
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+    max-width: 480px;
+  }
+
+  .hero-desc {
+    font-size: 1rem; font-weight: 300;
+    color: var(--silver);
+    line-height: 1.8;
+    max-width: 460px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--black);
+    padding: 0.9rem 2.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.25s, transform 0.18s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--amber-light); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--cream);
+    padding: 0.9rem 2.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 400;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(245,240,232,0.25); cursor: pointer;
+    border-radius: 2px;
+    transition: border-color 0.25s, color 0.25s, transform 0.18s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover { border-color: var(--amber); color: var(--amber); transform: translateY(-2px); }
+
+  /* Hero right — book mockup */
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    padding: 4rem;
+  }
+
+  .book-3d {
+    position: relative;
+    width: 260px;
+    transform: perspective(1000px) rotateY(-12deg) rotateX(3deg);
+    filter: drop-shadow(-30px 30px 60px rgba(0,0,0,0.8)) drop-shadow(-5px 5px 20px rgba(212,135,26,0.15));
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: perspective(1000px) rotateY(-12deg) rotateX(3deg) translateY(0); }
+    50% { transform: perspective(1000px) rotateY(-12deg) rotateX(3deg) translateY(-14px); }
+  }
+
+  .book-cover {
+    width: 100%;
+    background: linear-gradient(145deg, #1a1206 0%, #2a1d0a 40%, #1c1408 100%);
+    border-radius: 3px 8px 8px 3px;
+    padding: 2.5rem 2rem;
+    min-height: 380px;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(212,135,26,0.25);
+    position: relative; overflow: hidden;
+  }
+
+  .book-cover::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 18px;
+    background: linear-gradient(90deg, #0d0a05, #3a2810, #0d0a05);
+    border-right: 1px solid rgba(212,135,26,0.2);
+  }
+
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    top: 20%; left: 15%; right: 15%; bottom: 20%;
+    border: 1px solid rgba(212,135,26,0.12);
+    pointer-events: none;
+  }
+
+  .book-title-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--amber-light);
+    line-height: 1.1;
+    text-align: center;
+    margin-left: 1.2rem;
+    position: relative; z-index: 1;
+  }
+
+  .book-subtitle-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.72rem;
+    color: var(--silver);
+    text-align: center;
+    margin-left: 1.2rem;
+    margin-top: 0.5rem;
+    position: relative; z-index: 1;
+    line-height: 1.4;
+  }
+
+  .book-icon {
+    font-size: 4rem;
+    text-align: center;
+    margin: auto 0;
+    filter: drop-shadow(0 0 12px rgba(212,135,26,0.4));
+  }
+
+  .book-author {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; font-weight: 400;
+    color: var(--amber);
+    text-align: center;
+    margin-left: 1.2rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+
+  /* Glow ring behind book */
+  .book-glow {
+    position: absolute;
+    width: 320px; height: 420px;
+    background: radial-gradient(ellipse, rgba(212,135,26,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(212,135,26,0.15);
+    border-bottom: 1px solid rgba(212,135,26,0.15);
+    padding: 2rem 6rem;
+    display: flex; justify-content: space-around; align-items: center;
+    gap: 2rem; flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--amber);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 400;
+    color: var(--mid);
+    text-transform: uppercase; letter-spacing: 0.15em;
+    display: block; margin-top: 0.2rem;
+  }
+
+  .stat-divider {
+    width: 1px; height: 50px;
+    background: rgba(212,135,26,0.2);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 6rem; }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; font-weight: 400;
+    color: var(--amber);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    width: 1.5rem; height: 1px;
+    background: var(--amber); display: inline-block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--amber); }
+
+  .section-body {
+    font-size: 1rem; font-weight: 300;
+    color: var(--silver); line-height: 1.85;
+    max-width: 600px;
+  }
+
+  /* ── FEATURED BOOK SECTION ── */
+  #books {
+    background: var(--off-black);
+    position: relative;
+  }
+
+  #books::before {
+    content: '';
+    position: absolute; top: 0; left: 6rem; right: 6rem; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,135,26,0.3), transparent);
+  }
+
+  .books-header {
+    margin-bottom: 4rem;
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .book-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(212,135,26,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .book-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(212,135,26,0.4);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 4px 20px rgba(212,135,26,0.1);
+  }
+
+  .book-card-cover {
+    height: 240px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .book-card-cover.amber-theme {
+    background: linear-gradient(145deg, #1a1206, #2a1d0a, #1c1408);
+  }
+
+  .book-card-cover.steel-theme {
+    background: linear-gradient(145deg, #0d1117, #1a2233, #0d1117);
+  }
+
+  .book-card-cover.copper-theme {
+    background: linear-gradient(145deg, #120a04, #2a1408, #1a0e06);
+  }
+
+  .copper-theme .book-card-cover-title { color: #c97b3a; }
+
+  .book-card-cover-inner {
+    text-align: center; padding: 1.5rem;
+    position: relative; z-index: 1;
+  }
+
+  .book-card-cover-inner .book-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+  .book-card-cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 900;
+    line-height: 1.1;
+  }
+
+  .amber-theme .book-card-cover-title { color: var(--amber-light); }
+  .steel-theme .book-card-cover-title { color: #7eb8f0; }
+  .dark-theme .book-card-cover-title { color: #b0e0b0; }
+  .copper-theme .book-card-cover-title { color: #c97b3a; }
+
+  .book-card-cover.copper-theme {
+    background: linear-gradient(145deg, #120a04, #2a1408, #1a0e06);
+  }
+
+  .book-card-cover::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5) 100%);
+  }
+
+  .book-card-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--amber);
+    color: var(--black);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px; z-index: 2;
+  }
+
+  .book-card-body { padding: 1.8rem; }
+
+  .book-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .book-card-desc {
+    font-size: 0.88rem; font-weight: 300;
+    color: var(--mid); line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .book-card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(212,135,26,0.1);
+  }
+
+  .book-card-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--amber);
+  }
+
+  .book-card-price span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; font-weight: 300;
+    color: var(--mid);
+    text-decoration: line-through;
+    margin-left: 0.4rem;
+  }
+
+  .btn-buy {
+    background: var(--amber);
+    color: var(--black);
+    padding: 0.55rem 1.3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+
+  .btn-buy:hover { background: var(--amber-light); }
+
+  /* ── CHAPTER PREVIEW ── */
+  #preview {
+    background: linear-gradient(160deg, #0d0d0d, #111);
+  }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .chapter-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+
+  .chapter-item {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding: 0.9rem 1rem;
+    border-radius: 3px;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .chapter-item:hover { background: rgba(212,135,26,0.05); }
+
+  .chapter-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 400;
+    color: var(--amber);
+    opacity: 0.7;
+    min-width: 2.5rem;
+    margin-top: 0.15rem;
+  }
+
+  .chapter-name {
+    font-size: 0.9rem; font-weight: 400;
+    color: var(--silver); line-height: 1.4;
+  }
+
+  .chapter-item.active { background: rgba(212,135,26,0.08); }
+  .chapter-item.active .chapter-name { color: var(--cream); }
+  .chapter-item.active .chapter-num { opacity: 1; }
+
+  .preview-excerpt {
+    position: sticky; top: 6rem;
+  }
+
+  .excerpt-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 400;
+    color: var(--amber);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(212,135,26,0.2);
+  }
+
+  .excerpt-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--white); margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .excerpt-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem; font-weight: 400;
+    color: var(--silver); line-height: 1.9;
+    border-left: 2px solid var(--amber);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials {
+    background: var(--off-black);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .testimonial-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(212,135,26,0.1);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 900;
+    color: var(--amber);
+    opacity: 0.15;
+    position: absolute; top: -0.5rem; left: 1.2rem;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem; font-weight: 400;
+    color: var(--silver); line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-stars {
+    color: var(--amber);
+    font-size: 0.8rem; margin-bottom: 0.8rem;
+  }
+
+  .testimonial-author {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; font-weight: 400;
+    color: var(--amber);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .testimonial-role {
+    font-size: 0.78rem; font-weight: 300;
+    color: var(--mid);
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--black);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem; align-items: center;
+  }
+
+  .about-portrait {
+    position: relative;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(145deg, #1a1510, #2a2018, #1a1510);
+    border: 1px solid rgba(212,135,26,0.2);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    position: relative; overflow: hidden;
+  }
+
+  .portrait-frame::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom right, rgba(212,135,26,0.05), transparent);
+  }
+
+  .about-tag {
+    position: absolute;
+    bottom: -1rem; right: -1rem;
+    background: var(--amber);
+    color: var(--black);
+    padding: 0.8rem 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .about-content { }
+
+  .about-bio {
+    font-size: 1rem; font-weight: 300;
+    color: var(--silver); line-height: 1.9;
+    margin-bottom: 2rem;
+  }
+
+  .about-credentials {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.7rem;
+  }
+
+  .about-credentials li {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-size: 0.88rem; font-weight: 300;
+    color: var(--silver);
+  }
+
+  .about-credentials li::before {
+    content: '⚡';
+    font-size: 0.75rem;
+    color: var(--amber);
+  }
+
+  /* ── PRODUCTS / BUNDLES ── */
+  #products {
+    background: var(--off-black);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .product-card {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .product-card:hover {
+    border-color: rgba(212,135,26,0.35);
+    transform: translateY(-4px);
+  }
+
+  .product-card.featured {
+    border-color: rgba(212,135,26,0.35);
+    background: linear-gradient(145deg, #1c1608, #2a1e0a, #1c1608);
+  }
+
+  .product-card.featured::before {
+    content: 'BEST VALUE';
+    position: absolute; top: 0; right: 0;
+    background: var(--amber);
+    color: var(--black);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem; font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.8rem;
+    border-bottom-left-radius: 4px;
+  }
+
+  .product-icon {
+    font-size: 2.2rem; margin-bottom: 1.2rem;
+  }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .product-desc {
+    font-size: 0.85rem; font-weight: 300;
+    color: var(--mid); line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-includes {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-includes li {
+    font-size: 0.8rem; font-weight: 300;
+    color: var(--silver);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .product-includes li::before {
+    content: '✓';
+    color: var(--amber); font-size: 0.75rem; font-weight: 600;
+  }
+
+  .product-price-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .product-price-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900;
+    color: var(--amber);
+  }
+
+  /* ── EMAIL CAPTURE ── */
+  #subscribe {
+    background: linear-gradient(135deg, #1a1206, #0d0d0d, #111208);
+    border-top: 1px solid rgba(212,135,26,0.15);
+    border-bottom: 1px solid rgba(212,135,26,0.15);
+    text-align: center;
+    padding: 6rem;
+  }
+
+  .subscribe-inner { max-width: 560px; margin: 0 auto; }
+
+  .subscribe-inner .section-title { margin-bottom: 1rem; }
+
+  .subscribe-inner .section-body {
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .subscribe-form {
+    display: flex; gap: 0.75rem; max-width: 460px; margin: 0 auto;
+  }
+
+  .subscribe-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(212,135,26,0.25);
+    color: var(--cream);
+    padding: 0.9rem 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 300;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.25s;
+  }
+
+  .subscribe-input:focus { border-color: var(--amber); }
+  .subscribe-input::placeholder { color: var(--smoke); }
+
+  .subscribe-fine {
+    margin-top: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem; font-weight: 300;
+    color: var(--smoke);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SETUP GUIDE ── */
+  #setup {
+    background: var(--black);
+  }
+
+  .setup-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .setup-step {
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    position: relative;
+    transition: border-color 0.25s;
+  }
+
+  .setup-step:hover { border-color: rgba(212,135,26,0.3); }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900;
+    color: rgba(212,135,26,0.12);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.7rem;
+  }
+
+  .step-desc {
+    font-size: 0.85rem; font-weight: 300;
+    color: var(--mid); line-height: 1.75;
+  }
+
+  .step-tag {
+    display: inline-block;
+    background: rgba(212,135,26,0.12);
+    color: var(--amber);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    margin-top: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--off-black);
+    border-top: 1px solid rgba(212,135,26,0.12);
+    padding: 4rem 6rem 3rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem; margin-bottom: 3rem;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900;
+    color: var(--amber);
+    margin-bottom: 1rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem; font-weight: 300;
+    color: var(--smoke); line-height: 1.7;
+    max-width: 260px;
+  }
+
+  .footer-col-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 500;
+    color: var(--silver);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .footer-links a {
+    font-size: 0.85rem; font-weight: 300;
+    color: var(--smoke); text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--amber); }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 300;
+    color: var(--smoke); letter-spacing: 0.08em;
+  }
+
+  .footer-social {
+    display: flex; gap: 1.2rem;
+  }
+
+  .footer-social a {
+    font-size: 0.75rem; font-weight: 300;
+    color: var(--smoke); text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .footer-social a:hover { color: var(--amber); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 4rem; }
+    .hero-left { padding: 4rem 1.5rem 2rem; }
+    .hero-right { padding: 2rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .stats-bar { padding: 2rem 1.5rem; }
+    .stat-divider { display: none; }
+    .preview-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    footer { padding: 3rem 1.5rem 2rem; }
+    #subscribe { padding: 4rem 1.5rem; }
+    .subscribe-form { flex-direction: column; }
+  }
+
+  /* ── SCROLL ANIMATION HOOKS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* stagger children */
+  .stagger > *:nth-child(1) { transition-delay: 0.05s; }
+  .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+  .stagger > *:nth-child(3) { transition-delay: 0.19s; }
+  .stagger > *:nth-child(4) { transition-delay: 0.26s; }
+  .stagger > *:nth-child(5) { transition-delay: 0.33s; }
+  .stagger > *:nth-child(6) { transition-delay: 0.40s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" style="font-size:1.2rem; letter-spacing:0.04em;">⚙️ <span style="color:var(--amber);">Minear</span><span style="color:var(--white);">Works</span><span style="color:var(--mid); font-size:0.7rem; font-family:'DM Mono',monospace; margin-left:0.5rem; letter-spacing:0.15em;">.com</span></div>
+  <ul class="nav-links">
+    <li><a href="#books">Books</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#preview">Preview</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Bundles</a></li>
+    <li><a href="#subscribe">Newsletter</a></li>
+    <li><a href="#books" class="nav-cta">Shop Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <p class="hero-eyebrow">MinearWorks.com — Books, Services & More</p>
+    <h1 class="hero-title"><span style="color:var(--amber);">Minear</span><span style="color:var(--white);">Works</span></h1>
+    <p class="hero-subtitle">Trade knowledge. Real-world experience. 25 years across two professions — built into books, services, and tools you can actually use.</p>
+    <p class="hero-desc">
+      From stationary engineering to the electrical trades — and expanding into tech and consulting — MinearWorks is the professional home of Minear: author, licensed engineer, and 25-year industry veteran.
+    </p>
+    <div class="hero-actions">
+      <a href="#books" class="btn-primary">Shop Books →</a>
+      <a href="#services" class="btn-secondary">View Services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="book-glow"></div>
+    <div style="display:flex; flex-direction:column; gap:1.5rem; align-items:center; position:relative; z-index:2;">
+      <!-- Stationary Engineer — real cover -->
+      <div style="transform: perspective(900px) rotateY(-8deg) rotateX(2deg); filter: drop-shadow(-24px 28px 50px rgba(0,0,0,0.85)) drop-shadow(0 4px 20px rgba(30,80,160,0.2)); animation: float 6s ease-in-out infinite;">
+        <img src="cover-stationary-engineer.jpg" alt="The Stationary Engineer by Doug Minear"
+          style="width:200px; border-radius:3px 8px 8px 3px; display:block; border:1px solid rgba(212,175,50,0.3);" />
+      </div>
+      <!-- Wire Stretcher — coming soon teaser pill -->
+      <div style="background:rgba(28,28,28,0.9); border:1px solid rgba(212,135,26,0.2); border-radius:30px; padding:0.6rem 1.4rem; display:flex; align-items:center; gap:0.7rem;">
+        <span style="font-size:1rem;">✍️</span>
+        <span style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--amber); letter-spacing:0.15em; text-transform:uppercase;">Wire Stretcher's Handbook — Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">1</span>
+    <span class="stat-label">Published Book</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">1</span>
+    <span class="stat-label">In Progress</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">22</span>
+    <span class="stat-label">Chapters Written</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">25</span>
+    <span class="stat-label">Years Experience</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">0</span>
+    <span class="stat-label">Wire Stretchers Found</span>
+  </div>
+</div>
+
+<!-- BOOKS -->
+<section id="books">
+  <div class="books-header fade-up">
+    <p class="section-eyebrow">The Bookshelf</p>
+    <h2 class="section-title">One Published. <em>One Coming.</em></h2>
+    <p class="section-body">The Stationary Engineer is available now on Amazon. The Wire Stretcher's Handbook is currently being written — sign up to be notified the moment it launches.</p>
+  </div>
+
+  <div class="books-grid stagger">
+
+    <!-- BOOK 1: THE STATIONARY ENGINEER -->
+    <div class="book-card fade-up">
+      <div class="book-card-cover" style="background:#0d1829; padding:0; overflow:hidden;">
+        <div class="book-card-badge">Book 1</div>
+        <img src="cover-stationary-engineer.jpg" alt="The Stationary Engineer by Doug Minear"
+          style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;" />
+      </div>
+      <div class="book-card-body">
+        <h3 class="book-card-title">The Stationary Engineer: The Complete Guide to the Profession</h3>
+        <p class="book-card-desc">From entry-level to Chief Engineer — boilers, HVAC, mechanical systems, licensing, exams, and the full career path. The definitive reference written by a Licensed Stationary Engineer who's lived every page.</p>
+        <div class="book-card-footer">
+          <div class="book-card-price">$9.99</div>
+          <a href="https://www.amazon.com/Stationary-Engineer-Complete-Guide-Profession-ebook/dp/B0GS3FGF3Z/" target="_blank" class="btn-buy">Buy on Amazon</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOK 2: THE WIRE STRETCHER'S HANDBOOK — COMING SOON -->
+    <div class="book-card fade-up">
+      <div class="book-card-cover amber-theme" style="position:relative;">
+        <div class="book-card-badge" style="background:#333; color:var(--silver);">In Progress</div>
+        <div class="book-card-cover-inner">
+          <div class="book-icon" style="opacity:0.4;">⚡</div>
+          <div class="book-card-cover-title" style="opacity:0.5;">The Wire Stretcher's Handbook</div>
+        </div>
+        <!-- Overlay -->
+        <div style="position:absolute; inset:0; background:rgba(10,10,10,0.65); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.6rem; z-index:3;">
+          <span style="font-size:2rem;">✍️</span>
+          <span style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--amber); letter-spacing:0.18em; text-transform:uppercase;">Currently Writing</span>
+          <span style="font-size:0.75rem; color:var(--silver); text-align:center; padding:0 1rem; line-height:1.5;">22 chapters of electrical trade wisdom — coming soon to MinearWorks.com</span>
+        </div>
+      </div>
+      <div class="book-card-body">
+        <h3 class="book-card-title">The Wire Stretcher's Handbook</h3>
+        <p class="book-card-desc">A civilian's field guide to the electrical trade — technical truth wrapped in sarcasm. Written with 25 years of hard-won jobsite wisdom. Currently in development.</p>
+        <div class="book-card-footer" style="flex-direction:column; align-items:flex-start; gap:0.8rem;">
+          <div style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--amber); letter-spacing:0.1em;">— Notify me when it's available —</div>
+          <a href="#subscribe" class="btn-buy" style="background:transparent; border:1px solid rgba(212,135,26,0.4); color:var(--amber); width:100%; text-align:center;">📧 Get Notified at Launch</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card fade-up">
+      <div class="book-card-cover steel-theme">
+        <div class="book-card-badge">Coming Soon</div>
+        <div class="book-card-cover-inner">
+          <div class="book-icon">📋</div>
+          <div class="book-card-cover-title">The Estimator's Bible</div>
+        </div>
+      </div>
+      <div class="book-card-body">
+        <h3 class="book-card-title">The Estimator's Bible</h3>
+        <p class="book-card-desc">Master the art of electrical estimating. Material takeoffs, labor units, overhead absorption, and the sacred law: every job costs more than the estimate.</p>
+        <div class="book-card-footer">
+          <div class="book-card-price">$19.99</div>
+          <a href="#subscribe" class="btn-buy">Pre-Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card fade-up">
+      <div class="book-card-cover dark-theme">
+        <div class="book-card-badge">Digital Only</div>
+        <div class="book-card-cover-inner">
+          <div class="book-icon">🔌</div>
+          <div class="book-card-cover-title">NEC Decoded: A Practical Translation</div>
+        </div>
+      </div>
+      <div class="book-card-body">
+        <h3 class="book-card-title">NEC Decoded: A Practical Translation</h3>
+        <p class="book-card-desc">The National Electrical Code reads like ancient hieroglyphs. This companion guide strips the legalese and tells you what it actually means in the field.</p>
+        <div class="book-card-footer">
+          <div class="book-card-price">$14.99</div>
+          <a href="#" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background: linear-gradient(160deg, #0d0d0d, #111);">
+  <p class="section-eyebrow fade-up">What Minear Works On</p>
+  <h2 class="section-title fade-up">Books Are Just the <em>Beginning</em></h2>
+  <p class="section-body fade-up">MinearWorks is built to grow. Here's what's available now — and what's coming as the platform expands into tech, training, and consulting.</p>
+
+  <div class="setup-steps stagger" style="margin-top:3.5rem;">
+
+    <div class="setup-step fade-up" style="border-color:rgba(212,135,26,0.25); background:rgba(212,135,26,0.03);">
+      <div style="font-size:2.2rem; margin-bottom:1rem;">📚</div>
+      <h3 class="step-title">Trade Books</h3>
+      <p class="step-desc">Two published titles covering the stationary engineering and electrical trades — written from 25 years of real field experience. More titles in development.</p>
+      <span class="step-tag" style="background:rgba(212,135,26,0.15);">Available Now</span>
+    </div>
+
+    <div class="setup-step fade-up" style="border-color:rgba(212,135,26,0.25); background:rgba(212,135,26,0.03);">
+      <div style="font-size:2.2rem; margin-bottom:1rem;">🎓</div>
+      <h3 class="step-title">Training & Courses</h3>
+      <p class="step-desc">Online courses, exam prep, and professional development content for stationary engineers, apprentices, and tradespeople looking to advance their careers.</p>
+      <span class="step-tag" style="background:rgba(30,100,200,0.15); color:#7eb8f0;">Coming Soon</span>
+    </div>
+
+    <div class="setup-step fade-up" style="border-color:rgba(212,135,26,0.25); background:rgba(212,135,26,0.03);">
+      <div style="font-size:2.2rem; margin-bottom:1rem;">🛠️</div>
+      <h3 class="step-title">Tools & Downloads</h3>
+      <p class="step-desc">Estimating worksheets, NEC reference cards, job cost trackers, and practical field tools built for tradespeople who need resources that actually work on the job.</p>
+      <span class="step-tag" style="background:rgba(212,135,26,0.15);">Available Now</span>
+    </div>
+
+    <div class="setup-step fade-up" style="border-color:rgba(212,135,26,0.25); background:rgba(212,135,26,0.03);">
+      <div style="font-size:2.2rem; margin-bottom:1rem;">💻</div>
+      <h3 class="step-title">Tech Services</h3>
+      <p class="step-desc">Technology consulting and services — details coming soon. MinearWorks is expanding beyond the trades into tech solutions for professionals and small businesses.</p>
+      <span class="step-tag" style="background:rgba(30,100,200,0.15); color:#7eb8f0;">In Development</span>
+    </div>
+
+    <div class="setup-step fade-up" style="border-color:rgba(212,135,26,0.25); background:rgba(212,135,26,0.03);">
+      <div style="font-size:2.2rem; margin-bottom:1rem;">🤝</div>
+      <h3 class="step-title">Consulting</h3>
+      <p class="step-desc">Professional consulting services drawing on 25 years of hands-on experience in stationary engineering and the electrical trades. Available for hire — contact for rates and availability.</p>
+      <span class="step-tag" style="background:rgba(30,180,80,0.12); color:#6ecf8e;">Inquire Below</span>
+    </div>
+
+    <div class="setup-step fade-up" style="border-color:rgba(212,135,26,0.25); background:rgba(212,135,26,0.03);">
+      <div style="font-size:2.2rem; margin-bottom:1rem;">📬</div>
+      <h3 class="step-title">Speaking & Media</h3>
+      <p class="step-desc">Available for podcast appearances, trade publications, industry events, and speaking engagements on stationary engineering, the electrical trades, and professional development.</p>
+      <span class="step-tag" style="background:rgba(30,180,80,0.12); color:#6ecf8e;">Inquire Below</span>
+    </div>
+
+  </div>
+
+  <!-- Contact CTA -->
+  <div style="margin-top:4rem; text-align:center; padding:3rem; background:rgba(212,135,26,0.05); border:1px solid rgba(212,135,26,0.15); border-radius:4px; max-width:640px; margin-left:auto; margin-right:auto;">
+    <p style="font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--amber); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1rem;">— Get in Touch —</p>
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; color:var(--white); margin-bottom:1rem;">Have a project in mind?</h3>
+    <p style="font-size:0.95rem; color:var(--silver); line-height:1.7; margin-bottom:2rem;">Whether it's consulting, a tech project, bulk book orders, or a speaking engagement — reach out and let's talk about what MinearWorks can do for you.</p>
+    <a href="/cdn-cgi/l/email-protection#4724282933262433072a2e292226353028352c346924282a" class="btn-primary"><span class="__cf_email__" data-cfemail="2e4d41405a4f4d5a6e4347404b4f5c59415c455d004d4143">[email&#160;protected]</span></a>
+  </div>
+</section>
+<section id="preview">
+  <p class="section-eyebrow fade-up">Inside the Book</p>
+  <h2 class="section-title fade-up">22 Chapters of <em>Unvarnished</em> Trade Truth</h2>
+
+  <div class="preview-grid">
+    <ul class="chapter-list">
+      <li class="chapter-item active"><span class="chapter-num">Ch. 01</span><span class="chapter-name">The Wire Stretcher</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 02</span><span class="chapter-name">The Hierarchy of the Hard Hat</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 03</span><span class="chapter-name">We Bring the Light (And Don't You Forget It)</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 04</span><span class="chapter-name">Plumbers, Drywallers & Other Natural Disasters</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 05</span><span class="chapter-name">Hi-Vis Anonymity and the Art of the Nickname</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 06</span><span class="chapter-name">The NEC: Ancient Hieroglyphs of a Forgotten God</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 07</span><span class="chapter-name">Magic Smoke Theory: A Complete Technical Education</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 08</span><span class="chapter-name">Ohm's Law, Murphy's Law, and the Third Law Nobody Talks About</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 09</span><span class="chapter-name">Grounding, Bonding, and Why Your Uncle's Wiring Will Kill Someone</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 10</span><span class="chapter-name">The Five Stages of Grief: Tracing a Ground Fault</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 11</span><span class="chapter-name">The Inspector: God in a Pickup Truck</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 12</span><span class="chapter-name">The General Contractor: A Love Story</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 13</span><span class="chapter-name">The Architect Drew What, Exactly?</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 14</span><span class="chapter-name">The Flashlight Chapter</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 15</span><span class="chapter-name">Broom Evasion: Advanced Techniques</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 16</span><span class="chapter-name">The Lunchbox, the Truck, and the Coffee Order</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 17</span><span class="chapter-name">Tools: What's Yours, What's Mine, and Why You'll Never See That Tape Measure Again</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 18</span><span class="chapter-name">The Journeyman Test: What the Exam Doesn't Prepare You For</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 19</span><span class="chapter-name">The Estimating Chapter: Multiplying by Pi and Still Undercharging</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 20</span><span class="chapter-name">Knees, Backs, and the Long Game</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 21</span><span class="chapter-name">Civilians: A Translation Guide</span></li>
+      <li class="chapter-item"><span class="chapter-num">Ch. 22</span><span class="chapter-name">We Bring the Light (And We Mean That)</span></li>
+    </ul>
+
+    <div class="preview-excerpt fade-up">
+      <div class="excerpt-header">— Chapter 1 Excerpt —</div>
+      <h3 class="excerpt-title">The Wire Stretcher</h3>
+      <p class="excerpt-text">
+        There is a tool called a wire stretcher. It does not exist. It has never existed. No manufacturer has ever produced one. No supply house has ever stocked one. And yet, on jobsites across America, every single year without exception, a fresh-faced apprentice is dispatched to find one with total confidence by someone who has been in the trade for three decades and is barely holding back a grin.
+      </p>
+      <p class="excerpt-text">
+        The wire stretcher is the cornerstone of jobsite mythology — the founding document of trade initiation. Its genius as a prank lies in its plausibility. It sounds real. And that, ultimately, is the entire point.
+      </p>
+      <a href="#books" class="btn-primary">Read the Full Book →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-eyebrow fade-up">What Readers Say</p>
+  <h2 class="section-title fade-up">From <em>Apprentices</em> to Master Electricians</h2>
+
+  <div class="testimonials-grid stagger">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">The estimating chapter alone is worth ten times the price of this book. I've been in the trade 12 years and I've never seen the underestimation problem explained so honestly.</p>
+      <div class="testimonial-author">Marcus T.</div>
+      <div class="testimonial-role">Licensed Electrical Contractor, Texas</div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">I bought this for my son when he started his apprenticeship. He finished it in a week and then started quoting it back to me. That tells you everything.</p>
+      <div class="testimonial-author">Diane R.</div>
+      <div class="testimonial-role">Parent & Civilian</div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">The chapter on the inspector made me laugh out loud three times and then immediately check two of my recent installs. Both were fine. But still.</p>
+      <div class="testimonial-author">Joe K.</div>
+      <div class="testimonial-role">Journeyman Electrician, Ohio</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-portrait fade-up">
+      <div class="portrait-frame" style="padding:0; overflow:hidden; background:#0d1829;">
+        <img src="cover-stationary-engineer.jpg" alt="The Stationary Engineer by Doug Minear"
+          style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;" />
+      </div>
+      <div class="about-tag">Doug Minear — 25 Years in the Trades</div>
+    </div>
+    <div class="about-content fade-up">
+      <p class="section-eyebrow">The Man Behind MinearWorks</p>
+      <h2 class="section-title">Minear — <em>25 Years</em><br>in the Field</h2>
+      <p class="about-bio">
+        Doug Minear didn't write these books from a library. He wrote them from 25 years inside two demanding trades — operating boilers, managing mechanical systems, pulling wire, reading plans that made no sense, and fighting for change orders that were always justified.
+      </p>
+      <p class="about-bio">
+        <em>The Stationary Engineer: A Complete Guide to the Profession</em> is the book Doug wished had existed when he entered the field. <em>The Wire Stretcher's Handbook</em> is the book he wrote because every apprentice deserves to know what they're walking into — and every civilian deserves to understand the people keeping the lights and heat on.
+      </p>
+      <ul class="about-credentials">
+        <li>Licensed Stationary Engineer — 25 years in the field</li>
+        <li>Boilers, HVAC, mechanical systems & electrical trades</li>
+        <li>Entry-level to Chief Engineer career experience</li>
+        <li>Author of two definitive trade profession guides</li>
+        <li>Available on Amazon Kindle & in print</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS / BUNDLES -->
+<section id="products">
+  <p class="section-eyebrow fade-up">The Full Shop</p>
+  <h2 class="section-title fade-up">Books, Bundles <em>&amp; More</em></h2>
+  <p class="section-body fade-up">Every product built around the same principle: real knowledge, honestly delivered, with no filler.</p>
+
+  <div class="products-grid stagger">
+
+    <div class="product-card fade-up">
+      <div class="product-icon">📖</div>
+      <h3 class="product-name">The Wire Stretcher's Handbook — Print</h3>
+      <p class="product-desc">Physical hardcover. The kind you leave on the truck dashboard and loan out and never get back.</p>
+      <ul class="product-includes">
+        <li>264 pages, hardcover</li>
+        <li>22 full chapters + glossary</li>
+        <li>Trade slang translation dictionary</li>
+        <li>Signed by the author on request</li>
+      </ul>
+      <div class="product-price-row">
+        <div class="product-price-num">$29.99</div>
+        <a href="#" class="btn-buy">Add to Cart</a>
+      </div>
+    </div>
+
+    <div class="product-card featured fade-up">
+      <div class="product-icon">📦</div>
+      <h3 class="product-name">The Complete Trade Bundle</h3>
+      <p class="product-desc">Both books + the estimating worksheet pack + NEC quick-reference cheat sheets. The full library in one shot.</p>
+      <ul class="product-includes">
+        <li>The Stationary Engineer (print + digital)</li>
+        <li>Wire Stretcher's Handbook (print + digital)</li>
+        <li>NEC Decoded digital guide</li>
+        <li>Estimating worksheet pack (PDF)</li>
+        <li>Priority email Q&amp;A access — 30 days</li>
+      </ul>
+      <div class="product-price-row">
+        <div class="product-price-num">$59.99</div>
+        <a href="#" class="btn-buy">Best Deal</a>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-icon">📊</div>
+      <h3 class="product-name">Estimating Worksheet Pack</h3>
+      <p class="product-desc">The spreadsheet system that turns estimating from guesswork into arithmetic. Material takeoff, labor calc, overhead absorption — all pre-built.</p>
+      <ul class="product-includes">
+        <li>Material takeoff template</li>
+        <li>Labor unit calculator</li>
+        <li>Overhead &amp; billing rate worksheet</li>
+        <li>Job cost tracking sheet</li>
+      </ul>
+      <div class="product-price-row">
+        <div class="product-price-num">$12.99</div>
+        <a href="#" class="btn-buy">Download</a>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-icon">🎓</div>
+      <h3 class="product-name">Journeyman Exam Prep Pack</h3>
+      <p class="product-desc">300+ practice questions aligned to real journeyman exam content, with detailed answer explanations — not just "correct answer: C."</p>
+      <ul class="product-includes">
+        <li>300+ multiple choice questions</li>
+        <li>Organized by NEC article</li>
+        <li>Full answer explanations</li>
+        <li>Covers calculations, code, and theory</li>
+      </ul>
+      <div class="product-price-row">
+        <div class="product-price-num">$17.99</div>
+        <a href="#" class="btn-buy">Download</a>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-icon">💡</div>
+      <h3 class="product-name">NEC Quick-Reference Cheat Sheets</h3>
+      <p class="product-desc">Laminated cards for the 20 most-used NEC tables and calculations. Wire fill, conduit fill, ampacity, AFCI/GFCI requirements, and more.</p>
+      <ul class="product-includes">
+        <li>8 double-sided laminated cards</li>
+        <li>Pocket-sized for the field</li>
+        <li>Updated for current NEC edition</li>
+      </ul>
+      <div class="product-price-row">
+        <div class="product-price-num">$9.99</div>
+        <a href="#" class="btn-buy">Add to Cart</a>
+      </div>
+    </div>
+
+    <div class="product-card fade-up">
+      <div class="product-icon">🎁</div>
+      <h3 class="product-name">Gift a Book</h3>
+      <p class="product-desc">Know a new apprentice? A homeowner who keeps doing their own wiring wrong? A GC who needs humbling? This is the gift.</p>
+      <ul class="product-includes">
+        <li>Gift wrap available</li>
+        <li>Personal note included</li>
+        <li>Digital or print delivery options</li>
+      </ul>
+      <div class="product-price-row">
+        <div class="product-price-num">$24.99</div>
+        <a href="#" class="btn-buy">Gift Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EMAIL SUBSCRIBE -->
+<section id="subscribe">
+  <div class="subscribe-inner">
+    <p class="section-eyebrow" style="justify-content: center; margin-bottom: 1rem;">Stay in the Loop</p>
+    <h2 class="section-title">Join the <em>MinearWorks</em><br>Community</h2>
+    <p class="section-body">
+      New books, free chapters, trade tips, tech updates, and early access to everything MinearWorks builds next — straight to your inbox. No spam. No blinker fluid.
+    </p>
+    <div class="subscribe-form">
+      <input type="email" class="subscribe-input" placeholder="your@email.com" />
+      <button class="btn-primary" type="button">Subscribe</button>
+    </div>
+    <p class="subscribe-fine">© MinearWorks.com — Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- SETUP GUIDE -->
+<section id="setup">
+  <p class="section-eyebrow fade-up">How to Set This Up</p>
+  <h2 class="section-title fade-up">Launching Your Own<br><em>Author Store</em></h2>
+  <p class="section-body fade-up">This landing page is ready to go. Here's exactly how to customize it and connect it to payments and delivery so you can start selling your books and products.</p>
+
+  <div class="setup-steps stagger">
+
+    <div class="setup-step fade-up">
+      <div class="step-num">01</div>
+      <h3 class="step-title">Replace Placeholder Content</h3>
+      <p class="step-desc">Edit the HTML file: swap in your real book titles, descriptions, prices, author bio, and chapter list. The structure is already built — just update the text and cover colors to match your brand.</p>
+      <span class="step-tag">Edit HTML</span>
+    </div>
+
+    <div class="setup-step fade-up">
+      <div class="step-num">02</div>
+      <h3 class="step-title">Upload to a Host</h3>
+      <p class="step-desc">This is a single HTML file — host it anywhere. Best options: <strong>Netlify</strong> (free drag-and-drop), <strong>GitHub Pages</strong> (free, connects to your domain), or upload via your domain registrar's file manager.</p>
+      <span class="step-tag">Hosting</span>
+    </div>
+
+    <div class="setup-step fade-up">
+      <div class="step-num">03</div>
+      <h3 class="step-title">Connect Stripe for Payments</h3>
+      <p class="step-desc">Create a free account at stripe.com. For each product, create a Payment Link inside Stripe. Replace each <code>href="#"</code> on the Buy Now buttons with your Stripe Payment Link URL. No backend needed.</p>
+      <span class="step-tag">Stripe</span>
+    </div>
+
+    <div class="setup-step fade-up">
+      <div class="step-num">04</div>
+      <h3 class="step-title">Set Up Digital Delivery</h3>
+      <p class="step-desc">For digital products (PDFs, ebooks), use <strong>Gumroad</strong> or <strong>SendOwl</strong>. Upload your files there, get product links, and point your buy buttons to those links. Both handle secure file delivery automatically after purchase.</p>
+      <span class="step-tag">Delivery</span>
+    </div>
+
+    <div class="setup-step fade-up">
+      <div class="step-num">05</div>
+      <h3 class="step-title">Wire Up the Email Form</h3>
+      <p class="step-desc">Create a free account at <strong>Mailchimp</strong> or <strong>ConvertKit</strong>. Replace the subscribe form with their embed code, or use Formspree to forward submissions to your email. Takes 10 minutes.</p>
+      <span class="step-tag">Email Marketing</span>
+    </div>
+
+    <div class="setup-step fade-up">
+      <div class="step-num">06</div>
+      <h3 class="step-title">Add Your Domain</h3>
+      <p class="step-desc">Buy a domain at Namecheap or Google Domains (~$12/year). Point it to your host via the DNS settings. Most hosts have a one-click "add custom domain" option. Your store is now live at your own URL.</p>
+      <span class="step-tag">Domain</span>
+    </div>
+
+    <div class="setup-step fade-up">
+      <div class="step-num">07</div>
+      <h3 class="step-title">Add a Real Author Photo</h3>
+      <p class="step-desc">Replace the ⚡ emoji in the portrait frame with an <code>&lt;img&gt;</code> tag pointing to your actual photo. A professional headshot or on-site photo works best. Keep it honest — this is a trade book.</p>
+      <span class="step-tag">Content</span>
+    </div>
+
+    <div class="setup-step fade-up">
+      <div class="step-num">08</div>
+      <h3 class="step-title">Track Sales & Traffic</h3>
+      <p class="step-desc">Add Google Analytics (free) by pasting one script tag before <code>&lt;/head&gt;</code>. Connect Stripe's dashboard for revenue tracking. You'll know exactly what's selling and where traffic comes from within 48 hours.</p>
+      <span class="step-tag">Analytics</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">⚙️ MinearWorks.com</div>
+      <p class="footer-tagline">Books, services, tools, and tech — built on 25 years of real trade experience. The professional platform of Minear, Licensed Stationary Engineer and trade author.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Books</div>
+      <ul class="footer-links">
+        <li><a href="#books">The Stationary Engineer</a></li>
+        <li><a href="#books">Wire Stretcher's Handbook</a></li>
+        <li><a href="#books">NEC Decoded</a></li>
+        <li><a href="#products">All Products</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="#preview">Chapter Preview</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#subscribe">Newsletter</a></li>
+        <li><a href="#about">About Minear</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="/cdn-cgi/l/email-protection#e3808c8d97828097a38e8a8d868291948c918890cd808c8e"><span class="__cf_email__" data-cfemail="d7b4b8b9a3b6b4a397babeb9b2b6a5a0b8a5bca4f9b4b8ba">[email&#160;protected]</span></a></li>
+        <li><a href="#">Press & Media</a></li>
+        <li><a href="#">Bulk Book Orders</a></li>
+        <li><a href="#">Consulting Inquiries</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 MinearWorks.com — All rights reserved. The wire stretcher still does not exist.</span>
+    <div class="footer-social">
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Amazon</a>
+      <a href="#">Goodreads</a>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Scroll fade-in animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Chapter list click to update excerpt
+const chapters = [
+  { title: "The Wire Stretcher", text: "There is a tool called a wire stretcher. It does not exist. It has never existed. No manufacturer has ever produced one. No supply house has ever stocked one. And yet, on jobsites across America, every single year without exception, a fresh-faced apprentice is dispatched to find one with total confidence by someone who has been in the trade for three decades and is barely holding back a grin." },
+  { title: "The Hierarchy of the Hard Hat", text: "The jobsite has a hierarchy. It is not written down anywhere. It does not appear in any contract or labor agreement. It is not taught in apprenticeship school. And yet every person on every jobsite understands it completely, enforces it constantly, and occasionally tests its limits — with consequences." },
+  { title: "We Bring the Light", text: "There is a moment on every new construction project, usually late in the schedule, when the permanent power is energized for the first time. The temporary power cords are coiled, the generator is silenced, and the electrician at the panel throws the main breaker. Lights come on. Every time. That moment belongs to the electricians." },
+  { title: "Plumbers, Drywallers & Other Natural Disasters", text: "Every trade has its opinion of every other trade. The electricians think the plumbers take too many breaks. The plumbers think the electricians don't know where the pipes are. The drywallers arrive last, cover everything up, and somehow make it everyone else's problem. This is the natural order." },
+  { title: "Hi-Vis Anonymity", text: "On a large commercial jobsite, everyone wears high-visibility vests and hard hats. The effect is a remarkable visual anonymity. You can walk onto most large commercial jobs, put on a hard hat, look busy, and move freely throughout the building for hours before anyone questions your presence. Nobody questions someone carrying something." },
+];
+
+document.querySelectorAll('.chapter-item').forEach((item, i) => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.chapter-item').forEach(c => c.classList.remove('active'));
+    item.classList.add('active');
+    const data = chapters[Math.min(i, chapters.length - 1)];
+    const titleEl = document.querySelector('.excerpt-title');
+    const textEl = document.querySelector('.excerpt-text');
+    if (titleEl && data) titleEl.textContent = `Chapter ${i + 1}: ${data.title
