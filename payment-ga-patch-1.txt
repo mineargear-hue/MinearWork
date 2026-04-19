@@ -1,0 +1,41 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     GOOGLE ANALYTICS PATCH FOR minearworks-payment-system.html
+     
+     INSTRUCTIONS:
+     Open minearworks-payment-system.html in your editor.
+     Find this line (it's line 5 in the file):
+     
+         <meta charset="UTF-8" />
+     
+     INSERT the following block BEFORE that line:
+     ═══════════════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════
+     GOOGLE ANALYTICS 4
+     REPLACE G-R9CKFRTMYF with your real
+     Measurement ID from analytics.google.com
+     ═══════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9CKFRTMYF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R9CKFRTMYF');
+</script>
+
+<!-- After inserting, the top of your <head> should look like this:
+
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9CKFRTMYF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R9CKFRTMYF');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MinearWorks — Payment & Distribution System</title>
+...
+
+-->
