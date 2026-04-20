@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-TQLPJ2PH');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9CKFRTMYF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R9CKFRTMYF');
+</script>
+<!-- End Google Analytics 4 -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MinearWorks — Payment & Distribution System</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --black: #0a0a0a;
+  --off-black: #111;
+  --charcoal: #1c1c1c;
+  --amber: #d4871a;
+  --amber-light: #f0a83c;
+  --amber-dim: rgba(212,135,26,0.12);
+  --cream: #f5f0e8;
+  --silver: #b8b8b8;
+  --mid: #777;
+  --smoke: #444;
+  --white: #fafaf8;
+  --success: #2d8a4e;
+  --error: #cc3b1a;
+  --blue: #3b82f6;
+  --blue-dim: rgba(59,130,246,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+/* ── TABS ── */
+.tab-bar {
+  background: var(--off-black);
+  border-bottom: 1px solid rgba(212,135,26,0.15);
+  display: flex;
+  padding: 0 2rem;
+  gap: 0;
+  position: sticky; top: 0; z-index: 50;
+}
+.tab-btn {
+  padding: 1.1rem 1.6rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; font-weight: 400;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--mid);
+  background: none; border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn:hover { color: var(--silver); }
+.tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── SHARED ── */
+.page-header {
+  padding: 3rem 3rem 2rem;
+  border-bottom: 1px solid rgba(212,135,26,0.1);
+  background: linear-gradient(135deg, #0d0d0d, #111);
+}
+.page-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; color: var(--amber);
+  letter-spacing: 0.25em; text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.page-eyebrow::before { content:''; width:1.2rem; height:1px; background:var(--amber); }
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900;
+  color: var(--white); line-height: 1.15;
+}
+.page-title em { font-style: italic; color: var(--amber); }
+.page-desc {
+  font-size: 0.9rem; color: var(--silver);
+  line-height: 1.7; margin-top: 0.6rem;
+  max-width: 600px;
+}
+.content-area { padding: 2.5rem 3rem; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--charcoal);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.card.highlight {
+  border-color: rgba(212,135,26,0.3);
+  background: linear-gradient(135deg, #1a1206, #1c1c1c);
+}
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--white); margin-bottom: 0.4rem;
+}
+.card-sub {
+  font-size: 0.82rem; color: var(--mid);
+  margin-bottom: 1.5rem; line-height: 1.6;
+}
+
+/* ── GRID ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+@media(max-width:760px) { .grid-2,.grid-3 { grid-template-columns:1fr; } }
+
+/* ── FORM ELEMENTS ── */
+label {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; font-weight: 400;
+  color: var(--silver);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+input, select, textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--cream);
+  padding: 0.75rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; font-weight: 300;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 1.2rem;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--amber); }
+input::placeholder, textarea::placeholder { color: var(--smoke); }
+select option { background: #1c1c1c; }
+textarea { resize: vertical; min-height: 100px; }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.field-row.three { grid-template-columns: 1fr 1fr 1fr; }
+@media(max-width:600px) { .field-row, .field-row.three { grid-template-columns:1fr; } }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.8rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  border: none; cursor: pointer; border-radius: 4px;
+  transition: all 0.2s; text-decoration: none;
+}
+.btn-amber { background: var(--amber); color: var(--black); }
+.btn-amber:hover { background: var(--amber-light); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--cream); border: 1px solid rgba(255,255,255,0.2); }
+.btn-outline:hover { border-color: var(--amber); color: var(--amber); }
+.btn-success { background: var(--success); color: var(--white); }
+.btn-blue { background: var(--blue); color: var(--white); }
+.btn-sm { padding: 0.5rem 1.1rem; font-size: 0.75rem; }
+.btn-full { width: 100%; justify-content: center; }
+
+/* ── BADGES ── */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  border-radius: 3px;
+}
+.badge-amber { background: var(--amber-dim); color: var(--amber); }
+.badge-green { background: rgba(45,138,78,0.15); color: #6ecf8e; }
+.badge-blue { background: var(--blue-dim); color: #7eb8f0; }
+.badge-red { background: rgba(204,59,26,0.15); color: #f07b5e; }
+.badge-gray { background: rgba(255,255,255,0.07); color: var(--mid); }
+
+/* ── DIVIDER ── */
+.divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  margin: 1.5rem 0;
+}
+.divider-label {
+  display: flex; align-items: center; gap: 1rem;
+  color: var(--smoke);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 1.5rem 0;
+}
+.divider-label::before, .divider-label::after {
+  content: ''; flex: 1;
+  height: 1px; background: rgba(255,255,255,0.07);
+}
+
+/* ── PAYMENT METHODS ── */
+.payment-methods {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.pay-method {
+  border: 2px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: rgba(255,255,255,0.02);
+}
+.pay-method:hover { border-color: rgba(212,135,26,0.4); }
+.pay-method.selected { border-color: var(--amber); background: var(--amber-dim); }
+.pay-method-icon { font-size: 1.6rem; margin-bottom: 0.4rem; display: block; }
+.pay-method-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; color: var(--silver);
+  letter-spacing: 0.08em;
+}
+
+/* ── CARD FIELD MOCK ── */
+.card-field {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+  cursor: text;
+}
+.card-field:focus-within { border-color: var(--amber); }
+.card-field-icon { font-size: 1.1rem; opacity: 0.5; }
+.card-field input {
+  background: none; border: none;
+  padding: 0; margin: 0;
+  font-size: 0.9rem; color: var(--cream);
+  flex: 1;
+}
+
+/* ── ORDER SUMMARY ── */
+.order-summary {
+  background: rgba(212,135,26,0.04);
+  border: 1px solid rgba(212,135,26,0.15);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+.order-line {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.88rem; color: var(--silver);
+}
+.order-line:last-child { border-bottom: none; }
+.order-line.total {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 700;
+  color: var(--white);
+  padding-top: 1rem; margin-top: 0.5rem;
+  border-top: 1px solid rgba(212,135,26,0.2);
+  border-bottom: none;
+}
+.order-line span:last-child { color: var(--amber); font-weight: 500; }
+.order-line.total span:last-child { color: var(--amber); font-size: 1.4rem; }
+
+/* ── PROGRESS STEPS ── */
+.checkout-steps {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 2.5rem;
+}
+.step-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 500;
+  border: 2px solid rgba(255,255,255,0.15);
+  color: var(--mid);
+  transition: all 0.3s;
+}
+.step-item.done .step-num { background: var(--success); border-color: var(--success); color: white; }
+.step-item.active .step-num { background: var(--amber); border-color: var(--amber); color: var(--black); }
+.step-item.active { color: var(--amber); }
+.step-item.done { color: var(--silver); }
+.step-connector {
+  flex: 1; height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 0 0.5rem;
+  min-width: 1.5rem;
+}
+
+/* ── INVOICE STYLES ── */
+.invoice-preview {
+  background: #fff;
+  color: #1a1a1a;
+  border-radius: 6px;
+  padding: 3rem;
+  font-family: 'DM Sans', sans-serif;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.invoice-preview * { box-sizing: border-box; }
+.inv-header {
+  display: flex; justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid #f0a83c;
+}
+.inv-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 900;
+  color: #1a1a1a;
+}
+.inv-logo span { color: #d4871a; }
+.inv-logo small {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; font-weight: 400;
+  color: #888; letter-spacing: 0.15em;
+  text-transform: uppercase; margin-top: 0.2rem;
+}
+.inv-number-block { text-align: right; }
+.inv-number {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem; color: #888;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+.inv-number strong {
+  display: block; font-size: 1.1rem;
+  color: #1a1a1a; letter-spacing: 0;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; margin-top: 0.2rem;
+}
+.inv-status {
+  display: inline-block; margin-top: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  background: #fff7e6; color: #d4871a;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.15em;
+  text-transform: uppercase; border-radius: 3px;
+  border: 1px solid #f0c87a;
+}
+.inv-status.paid { background: #e6f7ee; color: #2d8a4e; border-color: #7ecf9e; }
+.inv-parties {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2rem; margin-bottom: 2rem;
+}
+.inv-party-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; color: #aaa;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.inv-party-name { font-weight: 600; font-size: 1rem; color: #1a1a1a; }
+.inv-party-detail { font-size: 0.82rem; color: #555; line-height: 1.7; margin-top: 0.2rem; }
+table.inv-table {
+  width: 100%; border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+.inv-table th {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: #aaa;
+  padding: 0.6rem 1rem; text-align: left;
+  background: #f9f9f7;
+  border-bottom: 1px solid #eee;
+}
+.inv-table th:last-child { text-align: right; }
+.inv-table td {
+  padding: 0.9rem 1rem;
+  font-size: 0.88rem; color: #333;
+  border-bottom: 1px solid #f0f0ec;
+  vertical-align: top;
+}
+.inv-table td:last-child { text-align: right; font-weight: 500; }
+.inv-table td .item-name { font-weight: 600; color: #1a1a1a; }
+.inv-table td .item-desc { font-size: 0.78rem; color: #888; margin-top: 0.2rem; }
+.inv-totals { margin-left: auto; width: 280px; }
+.inv-total-row {
+  display: flex; justify-content: space-between;
+  padding: 0.45rem 0;
+  font-size: 0.85rem; color: #555;
+  border-bottom: 1px solid #f0f0ec;
+}
+.inv-total-row.grand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: #1a1a1a; padding-top: 0.8rem;
+  border-top: 2px solid #d4871a; border-bottom: none;
+}
+.inv-total-row.grand span:last-child { color: #d4871a; }
+.inv-footer-note {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  font-size: 0.78rem; color: #aaa; line-height: 1.7;
+}
+.inv-pay-btn {
+  display: block; width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #d4871a; color: #fff;
+  text-align: center; font-weight: 600;
+  font-size: 0.9rem; letter-spacing: 0.05em;
+  text-transform: uppercase; border-radius: 4px;
+  text-decoration: none; border: none; cursor: pointer;
+}
+
+/* ── DELIVERY TRACKER ── */
+.delivery-card {
+  background: var(--charcoal);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex; gap: 1.5rem; align-items: center;
+}
+.delivery-icon { font-size: 2rem; flex-shrink: 0; }
+.delivery-info { flex: 1; }
+.delivery-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 1rem;
+  color: var(--white); margin-bottom: 0.2rem;
+}
+.delivery-detail {
+  font-size: 0.8rem; color: var(--mid);
+  line-height: 1.5;
+}
+.delivery-actions { display: flex; gap: 0.5rem; flex-shrink: 0; flex-wrap: wrap; }
+
+/* ── SETUP STEPS ── */
+.setup-list { display: flex; flex-direction: column; gap: 1rem; }
+.setup-item {
+  display: flex; gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+.setup-item:hover { border-color: rgba(212,135,26,0.25); }
+.setup-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; font-weight: 900;
+  color: rgba(212,135,26,0.15);
+  line-height: 1; flex-shrink: 0; width: 2.5rem;
+  text-align: center;
+}
+.setup-body {}
+.setup-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 1rem;
+  color: var(--white); margin-bottom: 0.4rem;
+}
+.setup-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.7; }
+.setup-code {
+  display: inline-block; margin-top: 0.6rem;
+  background: rgba(212,135,26,0.08);
+  color: var(--amber);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; padding: 0.3rem 0.7rem;
+  border-radius: 3px; letter-spacing: 0.05em;
+}
+.tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem; }
+
+/* ── SUCCESS SCREEN ── */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+.success-screen.show { display: block; }
+.success-icon {
+  font-size: 4rem; margin-bottom: 1.5rem;
+  animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes pop {
+  0% { transform: scale(0); }
+  100% { transform: scale(1); }
+}
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900;
+  color: var(--white); margin-bottom: 0.5rem;
+}
+.success-sub { font-size: 0.95rem; color: var(--silver); line-height: 1.7; }
+
+/* ── NOTIFICATION TOAST ── */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem;
+  background: var(--charcoal);
+  border: 1px solid var(--amber);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.88rem; color: var(--cream);
+  transform: translateX(120%);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 999; max-width: 320px;
+}
+.toast.show { transform: translateX(0); }
+.toast-icon { font-size: 1.2rem; }
+
+/* ── TOGGLE SWITCH ── */
+.toggle-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.toggle-label { font-size: 0.88rem; color: var(--silver); }
+.toggle-label small { display: block; font-size: 0.75rem; color: var(--mid); margin-top: 0.15rem; }
+.toggle {
+  position: relative; width: 44px; height: 24px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px; cursor: pointer;
+  transition: background 0.25s;
+  flex-shrink: 0;
+}
+.toggle.on { background: var(--amber); }
+.toggle::after {
+  content: '';
+  position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px;
+  background: white; border-radius: 50%;
+  transition: transform 0.25s;
+}
+.toggle.on::after { transform: translateX(20px); }
+
+/* ── NAV BAR ── */
+.top-bar {
+  background: var(--off-black);
+  border-bottom: 1px solid rgba(212,135,26,0.2);
+  padding: 1rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.top-bar-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 900;
+}
+.top-bar-logo span { color: var(--amber); }
+.top-bar-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; color: var(--mid);
+  letter-spacing: 0.15em; text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-TQLPJ2PH"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div>
+    <div class="top-bar-logo">⚙️ <span>Minear</span>Works</div>
+    <div class="top-bar-sub">Payment & Distribution System</div>
+  </div>
+  <a href="author-landing-page.html" class="btn btn-outline btn-sm">← Back to Site</a>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('checkout')">🛒 Checkout</button>
+  <button class="tab-btn" onclick="switchTab('invoice')">📄 Invoice Generator</button>
+  <button class="tab-btn" onclick="switchTab('delivery')">📦 Delivery System</button>
+  <button class="tab-btn" onclick="switchTab('setup')">⚙️ Setup Guide</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TAB 1: CHECKOUT PAGE
+══════════════════════════════════════════════ -->
+<div id="tab-checkout" class="tab-panel active">
+  <div class="page-header">
+    <p class="page-eyebrow">Secure Checkout</p>
+    <h1 class="page-title">Complete Your <em>Order</em></h1>
+    <p class="page-desc">All transactions secured by Stripe. Accepts cards, PayPal, Apple Pay & Google Pay.</p>
+  </div>
+
+  <div class="content-area">
+
+    <!-- Checkout Steps -->
+    <div class="checkout-steps">
+      <div class="step-item done" id="step1">
+        <div class="step-num">✓</div>
+        <span>Cart</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item active" id="step2">
+        <div class="step-num">2</div>
+        <span>Payment</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" id="step3">
+        <div class="step-num">3</div>
+        <span>Confirm</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" id="step4">
+        <div class="step-num">4</div>
+        <span>Delivery</span>
+      </div>
+    </div>
+
+    <div class="grid-2">
+
+      <!-- LEFT: Payment Form -->
+      <div id="payment-form-area">
+
+        <!-- Product Selector -->
+        <div class="card">
+          <div class="card-title">What are you purchasing?</div>
+          <div class="card-sub">Select the product or service to auto-fill the order summary.</div>
+          <label>Select Product / Service</label>
+          <select id="product-select" onchange="updateOrder()">
+            <option value="">— Choose a product —</option>
+            <optgroup label="📚 Books">
+              <option value="stationary|9.99|ebook">The Stationary Engineer — eBook ($9.99)</option>
+              <option value="both|29.99|ebook" disabled>The Wire Stretcher's Handbook — Coming Soon</option>
+            </optgroup>
+            <optgroup label="🎓 Courses & Training">
+              <option value="course-se|49.99|digital">Stationary Engineer Exam Prep Course ($49.99)</option>
+              <option value="course-wsh|39.99|digital">Electrical Trade Fundamentals Course ($39.99)</option>
+              <option value="course-bundle|79.99|digital">Both Courses Bundle ($79.99)</option>
+            </optgroup>
+            <optgroup label="🛠️ Tools & Downloads">
+              <option value="estimating|12.99|digital">Estimating Worksheet Pack ($12.99)</option>
+              <option value="nec|9.99|digital">NEC Quick-Reference Cheat Sheets ($9.99)</option>
+              <option value="examprep|17.99|digital">Journeyman Exam Prep Pack ($17.99)</option>
+            </optgroup>
+            <optgroup label="🤝 Consulting">
+              <option value="consult-1hr|150.00|service">1-Hour Consulting Session ($150.00)</option>
+              <option value="consult-pkg|500.00|service">5-Hour Consulting Package ($500.00)</option>
+              <option value="consult-custom|0|service">Custom Consulting — Invoice Required</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Customer Info -->
+        <div class="card">
+          <div class="card-title">Your Information</div>
+          <div class="card-sub">Used for receipt and digital delivery.</div>
+          <div class="field-row">
+            <div>
+              <label>First Name</label>
+              <input type="text" placeholder="John" />
+            </div>
+            <div>
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith" />
+            </div>
+          </div>
+          <label>Email Address</label>
+          <input type="email" placeholder="john@email.com" id="customer-email" />
+          <label>Phone (optional)</label>
+          <input type="tel" placeholder="+1 (555) 000-0000" />
+        </div>
+
+        <!-- Payment Method -->
+        <div class="card">
+          <div class="card-title">Payment Method</div>
+          <div class="card-sub">All payments processed securely by Stripe. Your card details never touch our server.</div>
+
+          <div class="payment-methods">
+            <div class="pay-method selected" onclick="selectPayment(this,'card')">
+              <span class="pay-method-icon">💳</span>
+              <div class="pay-method-label">Card</div>
+            </div>
+            <div class="pay-method" onclick="selectPayment(this,'paypal')">
+              <span class="pay-method-icon">🅿️</span>
+              <div class="pay-method-label">PayPal</div>
+            </div>
+            <div class="pay-method" onclick="selectPayment(this,'apple')">
+              <span class="pay-method-icon">🍎</span>
+              <div class="pay-method-label">Apple/Google</div>
+            </div>
+          </div>
+
+          <!-- Card Fields -->
+          <div id="card-fields">
+            <label>Card Number</label>
+            <div class="card-field">
+              <span class="card-field-icon">💳</span>
+              <input type="text" placeholder="1234 5678 9012 3456" maxlength="19"
+                oninput="this.value=this.value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim()" />
+              <span style="font-size:0.75rem; color:var(--smoke);">🔒 SSL</span>
+            </div>
+            <div class="field-row">
+              <div>
+                <label>Expiry Date</label>
+                <input type="text" placeholder="MM / YY" maxlength="7"
+                  oninput="this.value=this.value.replace(/[^0-9\/]/g,'').replace(/^(\d{2})(\d)/,'$1 / $2')" />
+              </div>
+              <div>
+                <label>CVV</label>
+                <input type="text" placeholder="•••" maxlength="4"
+                  oninput="this.value=this.value.replace(/\D/g,'')" />
+              </div>
+            </div>
+            <label>Name on Card</label>
+            <input type="text" placeholder="John Smith" />
+          </div>
+
+          <!-- PayPal -->
+          <div id="paypal-fields" style="display:none; text-align:center; padding:1.5rem; background:rgba(255,255,255,0.03); border-radius:6px; border:1px dashed rgba(255,255,255,0.1);">
+            <div style="font-size:2rem; margin-bottom:0.8rem;">🅿️</div>
+            <p style="font-size:0.88rem; color:var(--silver); margin-bottom:1.2rem;">You'll be redirected to PayPal to complete your payment securely.</p>
+            <button class="btn btn-blue btn-full" onclick="showToast('Redirecting to PayPal...')">Continue to PayPal →</button>
+          </div>
+
+          <!-- Apple/Google Pay -->
+          <div id="apple-fields" style="display:none; text-align:center; padding:1.5rem; background:rgba(255,255,255,0.03); border-radius:6px; border:1px dashed rgba(255,255,255,0.1);">
+            <div style="font-size:2rem; margin-bottom:0.8rem;">📱</div>
+            <p style="font-size:0.88rem; color:var(--silver); margin-bottom:1.2rem;">Use your device's built-in payment system for a one-tap checkout.</p>
+            <button class="btn btn-outline btn-full" style="margin-bottom:0.75rem;" onclick="showToast('Apple Pay activated')">🍎 Pay with Apple Pay</button>
+            <button class="btn btn-outline btn-full" onclick="showToast('Google Pay activated')">🔵 Pay with Google Pay</button>
+          </div>
+
+          <!-- Promo Code -->
+          <hr class="divider" />
+          <label>Promo Code (optional)</label>
+          <div style="display:flex; gap:0.75rem;">
+            <input type="text" placeholder="MINEAR10" style="margin:0; flex:1;" id="promo-input" />
+            <button class="btn btn-outline btn-sm" onclick="applyPromo()" style="white-space:nowrap; margin:0;">Apply</button>
+          </div>
+          <div id="promo-msg" style="font-size:0.78rem; margin-top:0.4rem; color:var(--mid);"></div>
+        </div>
+
+        <!-- Submit -->
+        <button class="btn btn-amber btn-full" style="font-size:1rem; padding:1rem;" onclick="processPayment()">
+          🔒 Complete Purchase
+        </button>
+        <p style="text-align:center; font-family:'DM Mono',monospace; font-size:0.62rem; color:var(--smoke); margin-top:0.8rem; letter-spacing:0.08em;">
+          SECURED BY STRIPE · SSL ENCRYPTED · 256-BIT AES
+        </p>
+      </div>
+
+      <!-- RIGHT: Order Summary -->
+      <div>
+        <div class="order-summary" id="order-summary">
+          <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--amber); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1.2rem;">Order Summary</div>
+
+          <div id="summary-lines">
+            <div class="order-line">
+              <span style="color:var(--mid);">No product selected</span>
+              <span>—</span>
+            </div>
+          </div>
+
+          <div class="order-line total">
+            <span>Total</span>
+            <span id="order-total">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div style="margin-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+          <div style="text-align:center; padding:1rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:6px;">
+            <div style="font-size:1.5rem; margin-bottom:0.3rem;">🔒</div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); letter-spacing:0.08em;">SSL Secured</div>
+          </div>
+          <div style="text-align:center; padding:1rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:6px;">
+            <div style="font-size:1.5rem; margin-bottom:0.3rem;">⚡</div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); letter-spacing:0.08em;">Instant Delivery</div>
+          </div>
+          <div style="text-align:center; padding:1rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:6px;">
+            <div style="font-size:1.5rem; margin-bottom:0.3rem;">↩️</div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); letter-spacing:0.08em;">30-Day Guarantee</div>
+          </div>
+          <div style="text-align:center; padding:1rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:6px;">
+            <div style="font-size:1.5rem; margin-bottom:0.3rem;">📧</div>
+            <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); letter-spacing:0.08em;">Email Receipt</div>
+          </div>
+        </div>
+
+        <!-- Accepted payments -->
+        <div style="margin-top:1.5rem; padding:1.2rem; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:6px; text-align:center;">
+          <div style="font-family:'DM Mono',monospace; font-size:0.58rem; color:var(--smoke); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.8rem;">Accepted Payments</div>
+          <div style="display:flex; justify-content:center; gap:0.8rem; font-size:1.5rem;">
+            💳 🅿️ 🍎 🔵
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Screen (hidden by default) -->
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✅</div>
+      <h2 class="success-title">Payment Successful!</h2>
+      <p class="success-sub" id="success-detail">Your order has been confirmed. Check your email for your receipt and download link.</p>
+      <div style="margin-top:2rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <button class="btn btn-amber" onclick="resetCheckout()">Place Another Order</button>
+        <button class="btn btn-outline" onclick="switchTab('delivery')">View Delivery Status →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     TAB 2: INVOICE GENERATOR
+══════════════════════════════════════════════ -->
+<div id="tab-invoice" class="tab-panel">
+  <div class="page-header">
+    <p class="page-eyebrow">Invoice Generator</p>
+    <h1 class="page-title">Create & Send <em>Professional Invoices</em></h1>
+    <p class="page-desc">For consulting sessions, custom projects, and any service that needs a formal invoice. Generate, preview, and send in minutes.</p>
+  </div>
+
+  <div class="content-area">
+    <div class="grid-2" style="align-items:start;">
+
+      <!-- Invoice Form -->
+      <div>
+        <div class="card">
+          <div class="card-title">Invoice Details</div>
+          <div class="field-row">
+            <div>
+              <label>Invoice Number</label>
+              <input type="text" id="inv-num" value="MWK-2026-001" />
+            </div>
+            <div>
+              <label>Invoice Date</label>
+              <input type="date" id="inv-date" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div>
+              <label>Due Date</label>
+              <input type="date" id="inv-due" />
+            </div>
+            <div>
+              <label>Status</label>
+              <select id="inv-status-sel">
+                <option value="pending">Pending</option>
+                <option value="paid">Paid</option>
+                <option value="overdue">Overdue</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Bill To</div>
+          <label>Client Name / Company</label>
+          <input type="text" id="inv-client-name" placeholder="Acme Corp / John Smith" />
+          <label>Email</label>
+          <input type="email" id="inv-client-email" placeholder="client@company.com" />
+          <label>Address</label>
+          <textarea id="inv-client-addr" placeholder="123 Main St&#10;City, State 12345" style="min-height:70px;"></textarea>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Line Items</div>
+          <div id="line-items">
+            <div class="line-item field-row three" style="margin-bottom:0.75rem; align-items:end;">
+              <div>
+                <label>Description</label>
+                <input type="text" placeholder="1-Hour Consulting Session" />
+              </div>
+              <div>
+                <label>Qty</label>
+                <input type="number" value="1" min="1" />
+              </div>
+              <div>
+                <label>Unit Price</label>
+                <input type="number" value="150.00" step="0.01" />
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="addLineItem()" style="margin-top:0.5rem;">+ Add Line Item</button>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Notes & Terms</div>
+          <label>Payment Instructions / Notes</label>
+          <textarea id="inv-notes" placeholder="Payment due within 30 days. Pay via Stripe link: stripe.com/pay/minearworks&#10;&#10;Thank you for your business.">Payment due within 30 days. Pay via the secure link above.
+
+Thank you for choosing MinearWorks.</textarea>
+        </div>
+
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <button class="btn btn-amber" onclick="generateInvoice()">Generate Invoice Preview →</button>
+          <button class="btn btn-outline" onclick="showToast('Invoice saved as draft')">Save Draft</button>
+        </div>
+      </div>
+
+      <!-- Invoice Preview -->
+      <div>
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--amber); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:1rem;">— Live Preview —</div>
+
+        <div class="invoice-preview" id="invoice-preview">
+          <div class="inv-header">
+            <div>
+              <div class="inv-logo">⚙️ <span>Minear</span>Works<small>MinearWorks.com</small></div>
+              <div style="margin-top:0.8rem; font-size:0.8rem; color:#888; line-height:1.6;">
+                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2c4f4342584d4f586c414542494d5e5b435e475f024f4341">[email&#160;protected]</a><br>
+                MinearWorks.com
+              </div>
+            </div>
+            <div class="inv-number-block">
+              <div class="inv-number">Invoice<strong id="prev-num">MWK-2026-001</strong></div>
+              <div style="font-size:0.78rem; color:#888; margin-top:0.3rem;">Date: <span id="prev-date">—</span></div>
+              <div style="font-size:0.78rem; color:#888;">Due: <span id="prev-due">—</span></div>
+              <div class="inv-status" id="prev-status">PENDING</div>
+            </div>
+          </div>
+
+          <div class="inv-parties">
+            <div>
+              <div class="inv-party-label">From</div>
+              <div class="inv-party-name">Minear Works</div>
+              <div class="inv-party-detail">Licensed Stationary Engineer<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e4878b8a90858790a4898d8a818596938b968f97ca878b89">[email&#160;protected]</a><br>MinearWorks.com</div>
+            </div>
+            <div>
+              <div class="inv-party-label">Bill To</div>
+              <div class="inv-party-name" id="prev-client">—</div>
+              <div class="inv-party-detail" id="prev-addr">—</div>
+            </div>
+          </div>
+
+          <table class="inv-table">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th style="text-align:center;">Qty</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="prev-lines">
+              <tr>
+                <td><div class="item-name">1-Hour Consulting Session</div><div class="item-desc">Trade & engineering consulting via video call</div></td>
+                <td style="text-align:center;">1</td>
+                <td>$150.00</td>
+                <td>$150.00</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="inv-totals">
+            <div class="inv-total-row"><span>Subtotal</span><span id="prev-subtotal">$150.00</span></div>
+            <div class="inv-total-row"><span>Tax (0%)</span><span>$0.00</span></div>
+            <div class="inv-total-row grand"><span>Total Due</span><span id="prev-total">$150.00</span></div>
+          </div>
+
+          <button class="inv-pay-btn" onclick="showToast('Payment link sent to client!')">Pay Now — $150.00</button>
+
+          <div class="inv-footer-note" id="prev-notes">
+            Payment due within 30 days. Pay via the secure link above.<br><br>
+            Thank you for choosing MinearWorks.
+          </div>
+        </div>
+
+        <!-- Invoice Actions -->
+        <div style="display:flex; gap:0.75rem; margin-top:1.5rem; flex-wrap:wrap;">
+          <button class="btn btn-amber btn-sm" onclick="showToast('📧 Invoice emailed to client!')">📧 Email to Client</button>
+          <button class="btn btn-outline btn-sm" onclick="window.print()">🖨️ Print / PDF</button>
+          <button class="btn btn-outline btn-sm" onclick="showToast('🔗 Payment link copied!')">🔗 Copy Pay Link</button>
+          <button class="btn btn-success btn-sm" onclick="showToast('✅ Marked as Paid!')">✅ Mark Paid</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     TAB 3: DELIVERY SYSTEM
+══════════════════════════════════════════════ -->
+<div id="tab-delivery" class="tab-panel">
+  <div class="page-header">
+    <p class="page-eyebrow">Delivery System</p>
+    <h1 class="page-title">Automated <em>Order Delivery</em></h1>
+    <p class="page-desc">Every digital product and book is automatically delivered to the customer by email immediately after payment. Here's how each product is handled.</p>
+  </div>
+
+  <div class="content-area">
+
+    <!-- Delivery Status Board -->
+    <div class="card highlight">
+      <div class="card-title">📊 Delivery Dashboard — Live Orders</div>
+      <div class="card-sub">Recent orders and their delivery status. In production this connects to your Stripe + email system.</div>
+
+      <div id="order-board">
+        <div class="delivery-card">
+          <div class="delivery-icon">📗</div>
+          <div class="delivery-info">
+            <div class="delivery-name">The Stationary Engineer — eBook</div>
+            <div class="delivery-detail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="600a0f080e4e130d09140820050d01090c4e030f0d">[email&#160;protected]</a> · Ordered 2 min ago · $9.99<br><span style="color:#6ecf8e;">✓ Download email sent · Opened</span></div>
+          </div>
+          <div class="delivery-actions">
+            <span class="badge badge-green">Delivered</span>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Resent to john.smith@email.com')">Resend</button>
+          </div>
+        </div>
+
+        <div class="delivery-card">
+          <div class="delivery-icon">⚡</div>
+          <div class="delivery-info">
+            <div class="delivery-name">Wire Stretcher's Handbook — eBook</div>
+            <div class="delivery-detail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b1c2d0c3d0d99fdbdedfd4c2f1d4dcd0d8dd9fd2dedc">[email&#160;protected]</a> · Ordered 1 hr ago · $24.99<br><span style="color:#f0c87a;">⏳ Email sent · Not yet opened</span></div>
+          </div>
+          <div class="delivery-actions">
+            <span class="badge badge-amber">Pending Open</span>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Reminder sent to sarah.jones@email.com')">Nudge</button>
+          </div>
+        </div>
+
+        <div class="delivery-card">
+          <div class="delivery-icon">🤝</div>
+          <div class="delivery-info">
+            <div class="delivery-name">1-Hour Consulting Session</div>
+            <div class="delivery-detail"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93fefaf8f6bde1d3f0fcfee3f2fdeabdf0fcfe">[email&#160;protected]</a> · Invoiced 3 days ago · $150.00<br><span style="color:#7eb8f0;">💳 Invoice viewed · Payment pending</span></div>
+          </div>
+          <div class="delivery-actions">
+            <span class="badge badge-blue">Invoice Sent</span>
+            <button class="btn btn-outline btn-sm" onclick="showToast('Follow-up email sent!')">Follow Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How Each Product is Delivered -->
+    <h2 style="font-family:'Playfair Display',serif; font-weight:900; font-size:1.4rem; color:var(--white); margin-bottom:1.5rem;">How Each Product Type is Delivered</h2>
+
+    <div class="grid-2">
+
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">📚</div>
+        <div class="card-title">eBooks (PDF / ePub)</div>
+        <div class="card-sub">The Stationary Engineer & Wire Stretcher's Handbook</div>
+        <div class="setup-list" style="gap:0.6rem;">
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">1</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Customer pays via Stripe/PayPal</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">2</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Gumroad auto-sends download email</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">3</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Customer gets secure 48-hr link</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">4</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Receipt auto-sent by Stripe</div></div>
+          </div>
+        </div>
+        <div class="tag-row" style="margin-top:1rem;">
+          <span class="badge badge-green">Fully Automated</span>
+          <span class="badge badge-amber">Gumroad</span>
+          <span class="badge badge-gray">Stripe</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">🎓</div>
+        <div class="card-title">Courses & Training</div>
+        <div class="card-sub">Exam prep, online courses, training modules</div>
+        <div class="setup-list" style="gap:0.6rem;">
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">1</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Customer pays via Stripe</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">2</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Teachable/Podia creates account</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">3</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Login credentials emailed instantly</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">4</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Student accesses course portal</div></div>
+          </div>
+        </div>
+        <div class="tag-row" style="margin-top:1rem;">
+          <span class="badge badge-blue">Teachable / Podia</span>
+          <span class="badge badge-gray">Stripe</span>
+          <span class="badge badge-amber">Coming Soon</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">🤝</div>
+        <div class="card-title">Consulting Services</div>
+        <div class="card-sub">1-hr sessions, packages, custom projects</div>
+        <div class="setup-list" style="gap:0.6rem;">
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">1</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Client submits inquiry form</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">2</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">You send invoice via this system</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">3</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Client pays Stripe link in invoice</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">4</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Calendly books the session auto</div></div>
+          </div>
+        </div>
+        <div class="tag-row" style="margin-top:1rem;">
+          <span class="badge badge-green">Invoice System</span>
+          <span class="badge badge-gray">Calendly</span>
+          <span class="badge badge-amber">Stripe</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="font-size:2rem; margin-bottom:0.8rem;">🛠️</div>
+        <div class="card-title">Tools & Downloads</div>
+        <div class="card-sub">Worksheets, cheat sheets, templates (PDF)</div>
+        <div class="setup-list" style="gap:0.6rem;">
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">1</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Customer pays via Stripe</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">2</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Gumroad sends download link</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">3</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">PDF delivered to inbox instantly</div></div>
+          </div>
+          <div class="setup-item" style="padding:0.9rem;">
+            <div class="setup-num" style="font-size:1.2rem; width:1.5rem;">4</div>
+            <div><div class="setup-title" style="font-size:0.85rem;">Receipt and invoice auto-sent</div></div>
+          </div>
+        </div>
+        <div class="tag-row" style="margin-top:1rem;">
+          <span class="badge badge-green">Fully Automated</span>
+          <span class="badge badge-amber">Gumroad</span>
+          <span class="badge badge-gray">Stripe</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Delivery Settings Toggles -->
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-title">⚙️ Delivery Settings</div>
+      <div class="card-sub">Configure how your automated delivery behaves.</div>
+
+      <div class="toggle-row">
+        <div class="toggle-label">Send purchase receipt email<small>Stripe auto-sends a receipt to every buyer</small></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label">Send download link via email<small>Gumroad emails the buyer a secure download link</small></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label">48-hour download link expiry<small>Links expire after 48hrs for security — buyer can request renewal</small></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label">Notify me on every sale<small>Get an email or Slack ping every time a product sells</small></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-label">Auto follow-up if email unopened after 48hrs<small>Sends a gentle reminder if the customer hasn't opened the delivery email</small></div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     TAB 4: SETUP GUIDE
+══════════════════════════════════════════════ -->
+<div id="tab-setup" class="tab-panel">
+  <div class="page-header">
+    <p class="page-eyebrow">Complete Setup Guide</p>
+    <h1 class="page-title">Go Live on <em>MinearWorks.com</em></h1>
+    <p class="page-desc">Follow these steps in order and your full payment + delivery system will be live and processing real orders within a day. Every tool recommended is either free or low-cost.</p>
+  </div>
+
+  <div class="content-area">
+
+    <!-- Cost Summary -->
+    <div class="card highlight" style="margin-bottom:2rem;">
+      <div class="card-title">💰 Total Cost to Launch</div>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:1rem;">
+        <div style="text-align:center; padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px;">
+          <div style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--amber);">$12</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); margin-top:0.2rem;">Domain/yr</div>
+        </div>
+        <div style="text-align:center; padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px;">
+          <div style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--amber);">FREE</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); margin-top:0.2rem;">Netlify Hosting</div>
+        </div>
+        <div style="text-align:center; padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px;">
+          <div style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--amber);">2.9%</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); margin-top:0.2rem;">Stripe per sale</div>
+        </div>
+        <div style="text-align:center; padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px;">
+          <div style="font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--amber);">FREE</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--mid); margin-top:0.2rem;">Gumroad delivery</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="setup-list">
+
+      <div class="setup-item">
+        <div class="setup-num">01</div>
+        <div class="setup-body">
+          <div class="setup-title">Create your Stripe account</div>
+          <div class="setup-desc">Go to <strong>stripe.com</strong> and sign up for free. Enter your bank account details so payments go directly to you. Takes 10 minutes. Once set up, go to <em>Products → Payment Links</em> and create one link per product. Copy each link and paste it into the corresponding Buy button <code>href</code> on your landing page.</div>
+          <div class="tag-row">
+            <span class="setup-code">stripe.com → Products → Payment Links</span>
+            <span class="badge badge-green">Free to set up</span>
+            <span class="badge badge-gray">2.9% + 30¢ per transaction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">02</div>
+        <div class="setup-body">
+          <div class="setup-title">Set up Gumroad for digital delivery</div>
+          <div class="setup-desc">Go to <strong>gumroad.com</strong> and create a free account. Upload your PDF files for each book and digital product. Gumroad gives you a product link — paste this as your Buy button URL. After purchase, Gumroad automatically emails the buyer a secure download link. No code required, no backend, completely hands-off delivery.</div>
+          <div class="tag-row">
+            <span class="setup-code">gumroad.com → New Product → Upload PDF</span>
+            <span class="badge badge-green">Free tier available</span>
+            <span class="badge badge-amber">10% fee on free plan, $10/mo for 3% fee</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">03</div>
+        <div class="setup-body">
+          <div class="setup-title">Connect PayPal to your checkout</div>
+          <div class="setup-desc">Create a <strong>PayPal Business</strong> account at paypal.com/business. Go to <em>Tools → PayPal Buttons</em> to generate Buy Now buttons for each product. Alternatively, Stripe supports PayPal natively — enable it in your Stripe dashboard under <em>Settings → Payment Methods</em> with one click.</div>
+          <div class="tag-row">
+            <span class="setup-code">Stripe Dashboard → Settings → Payment Methods → PayPal</span>
+            <span class="badge badge-blue">One-click in Stripe</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">04</div>
+        <div class="setup-body">
+          <div class="setup-title">Enable Apple Pay & Google Pay</div>
+          <div class="setup-desc">Both are already built into Stripe Payment Links — no setup needed. Customers on iPhone/Mac automatically see Apple Pay; Android users see Google Pay. To enable on your own checkout form, add the Stripe.js library and use the <code>PaymentRequestButton</code> element. Stripe's dashboard shows one toggle to enable both simultaneously.</div>
+          <div class="tag-row">
+            <span class="setup-code">Stripe Dashboard → Settings → Payment Methods → Wallets</span>
+            <span class="badge badge-green">Already enabled in Payment Links</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">05</div>
+        <div class="setup-body">
+          <div class="setup-title">Deploy MinearWorks.com on Netlify</div>
+          <div class="setup-desc">Go to <strong>netlify.com</strong> and drag-and-drop your HTML files into the deploy box. Your site is live instantly on a Netlify subdomain. Then go to <em>Site Settings → Domain Management</em> and click <em>Add Custom Domain</em>. Enter <strong>minearworks.com</strong>. Netlify gives you the DNS records to add in your domain registrar (wherever you bought the domain). Takes about 10 minutes; propagates in under an hour.</div>
+          <div class="tag-row">
+            <span class="setup-code">app.netlify.com → Add New Site → Deploy Manually</span>
+            <span class="badge badge-green">Free hosting</span>
+            <span class="badge badge-amber">HTTPS auto-configured</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">06</div>
+        <div class="setup-body">
+          <div class="setup-title">Set up <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5d6dadbc1d4d6c1f5d8dcdbd0d4c7c2dac7dec69bd6dad8">[email&#160;protected]</a> email</div>
+          <div class="setup-desc">Go to <strong>Google Workspace</strong> (workspace.google.com) and create a Business Starter account for ~$6/month. This gives you <code><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6704080913060413270a0e090206151008150c144904080a">[email&#160;protected]</a></code>, a full Gmail inbox, Google Drive, and Calendar. Point your domain's MX records to Google (they give you exact copy-paste instructions). All invoices, receipts, and delivery emails will come from your professional address.</div>
+          <div class="tag-row">
+            <span class="setup-code">workspace.google.com → Business Starter</span>
+            <span class="badge badge-gray">~$6/month</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">07</div>
+        <div class="setup-body">
+          <div class="setup-title">Set up Calendly for consulting bookings</div>
+          <div class="setup-desc">Go to <strong>calendly.com</strong> and create a free account. Set up a 1-hour and 5-hour event type with your availability. Connect it to your Google Calendar. Add your Calendly link to the consulting section of your site. After a client pays your invoice via Stripe, send them the Calendly link to book their session automatically — no back-and-forth emails required.</div>
+          <div class="tag-row">
+            <span class="setup-code">calendly.com → New Event Type → 1 Hour</span>
+            <span class="badge badge-green">Free plan available</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">08</div>
+        <div class="setup-body">
+          <div class="setup-title">Set up email marketing with ConvertKit</div>
+          <div class="setup-desc">Go to <strong>convertkit.com</strong> and sign up free (up to 1,000 subscribers). Replace the newsletter form on your landing page with your ConvertKit embed code. Every subscriber goes into your list automatically. Use ConvertKit to send new book announcements, free chapters, and early access offers. When you launch a course, email your list first — they already trust you.</div>
+          <div class="tag-row">
+            <span class="setup-code">convertkit.com → Forms → Embed</span>
+            <span class="badge badge-green">Free up to 1,000 subscribers</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">09</div>
+        <div class="setup-body">
+          <div class="setup-title">Add analytics to track sales & traffic</div>
+          <div class="setup-desc">Create a free <strong>Google Analytics 4</strong> account at analytics.google.com. Copy the tracking script tag and paste it just before the <code>&lt;/head&gt;</code> tag on every page. Within 24 hours you'll see exactly where visitors come from, which pages they visit, and which products get the most clicks. Stripe's dashboard handles all revenue tracking separately.</div>
+          <div class="tag-row">
+            <span class="setup-code">analytics.google.com → Create Property → Copy script tag</span>
+            <span class="badge badge-green">Completely free</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setup-item">
+        <div class="setup-num">10</div>
+        <div class="setup-body">
+          <div class="setup-title">Use this invoice system for consulting clients</div>
+          <div class="setup-desc">Use the Invoice Generator tab in this file to create professional invoices for every consulting client. Fill in the details, click Generate, then email the invoice directly. The client clicks the pay button which links to your Stripe payment link. When paid, mark it as paid in your records. Save each invoice as a PDF via your browser's Print → Save as PDF function for your records.</div>
+          <div class="tag-row">
+            <span class="setup-code">This file → Invoice Generator tab → Generate → Email</span>
+            <span class="badge badge-amber">Already built</span>
+            <span class="badge badge-green">No extra cost</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quick Reference -->
+    <div class="card" style="margin-top:2rem;">
+      <div class="card-title">🗂 Quick Reference — All Your Tools</div>
+      <div class="grid-3" style="margin-top:1.2rem; gap:1rem;">
+        <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px; text-align:center;">
+          <div style="font-size:1.5rem; margin-bottom:0.4rem;">💳</div>
+          <div style="font-weight:600; font-size:0.85rem; color:var(--white);">Stripe</div>
+          <div style="font-size:0.75rem; color:var(--mid);">Payments + receipts</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--amber); margin-top:0.3rem;">stripe.com</div>
+        </div>
+        <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px; text-align:center;">
+          <div style="font-size:1.5rem; margin-bottom:0.4rem;">📦</div>
+          <div style="font-weight:600; font-size:0.85rem; color:var(--white);">Gumroad</div>
+          <div style="font-size:0.75rem; color:var(--mid);">Digital delivery</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--amber); margin-top:0.3rem;">gumroad.com</div>
+        </div>
+        <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px; text-align:center;">
+          <div style="font-size:1.5rem; margin-bottom:0.4rem;">🌐</div>
+          <div style="font-weight:600; font-size:0.85rem; color:var(--white);">Netlify</div>
+          <div style="font-size:0.75rem; color:var(--mid);">Free hosting</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--amber); margin-top:0.3rem;">netlify.com</div>
+        </div>
+        <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px; text-align:center;">
+          <div style="font-size:1.5rem; margin-bottom:0.4rem;">📧</div>
+          <div style="font-weight:600; font-size:0.85rem; color:var(--white);">Google Workspace</div>
+          <div style="font-size:0.75rem; color:var(--mid);">Pro email</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--amber); margin-top:0.3rem;">workspace.google.com</div>
+        </div>
+        <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px; text-align:center;">
+          <div style="font-size:1.5rem; margin-bottom:0.4rem;">📅</div>
+          <div style="font-weight:600; font-size:0.85rem; color:var(--white);">Calendly</div>
+          <div style="font-size:0.75rem; color:var(--mid);">Booking sessions</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--amber); margin-top:0.3rem;">calendly.com</div>
+        </div>
+        <div style="padding:1rem; background:rgba(0,0,0,0.3); border-radius:4px; text-align:center;">
+          <div style="font-size:1.5rem; margin-bottom:0.4rem;">📮</div>
+          <div style="font-weight:600; font-size:0.85rem; color:var(--white);">ConvertKit</div>
+          <div style="font-size:0.75rem; color:var(--mid);">Email marketing</div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--amber); margin-top:0.3rem;">convertkit.com</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">
+  <span class="toast-icon">⚡</span>
+  <span id="toast-msg">Action completed</span>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── TAB SWITCHING ──
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── PAYMENT METHOD TOGGLE ──
+function selectPayment(el, type) {
+  document.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('card-fields').style.display = type === 'card' ? 'block' : 'none';
+  document.getElementById('paypal-fields').style.display = type === 'paypal' ? 'block' : 'none';
+  document.getElementById('apple-fields').style.display = type === 'apple' ? 'block' : 'none';
+}
+
+// ── ORDER SUMMARY UPDATE ──
+const products = {
+  'stationary|9.99|ebook':     { name: 'The Stationary Engineer — eBook', price: 9.99, type: 'Digital Download' },
+  'wirestretcher|24.99|ebook': { name: "Wire Stretcher's Handbook — eBook", price: 24.99, type: 'Digital Download' },
+  'both|29.99|ebook':          { name: 'Both Books Bundle — eBook', price: 29.99, type: 'Digital Download' },
+  'course-se|49.99|digital':   { name: 'Stationary Engineer Exam Prep', price: 49.99, type: 'Online Course Access' },
+  'course-wsh|39.99|digital':  { name: 'Electrical Trade Fundamentals', price: 39.99, type: 'Online Course Access' },
+  'course-bundle|79.99|digital':{ name: 'Both Courses Bundle', price: 79.99, type: 'Online Course Access' },
+  'estimating|12.99|digital':  { name: 'Estimating Worksheet Pack', price: 12.99, type: 'PDF Download' },
+  'nec|9.99|digital':          { name: 'NEC Quick-Reference Sheets', price: 9.99, type: 'PDF Download' },
+  'examprep|17.99|digital':    { name: 'Journeyman Exam Prep Pack', price: 17.99, type: 'PDF Download' },
+  'consult-1hr|150.00|service':{ name: '1-Hour Consulting Session', price: 150.00, type: 'Service — Invoice Sent' },
+  'consult-pkg|500.00|service':{ name: '5-Hour Consulting Package', price: 500.00, type: 'Service — Invoice Sent' },
+};
+
+function updateOrder() {
+  const sel = document.getElementById('product-select').value;
+  const lines = document.getElementById('summary-lines');
+  const total = document.getElementById('order-total');
+  if (!sel || !products[sel]) {
+    lines.innerHTML = '<div class="order-line"><span style="color:var(--mid);">No product selected</span><span>—</span></div>';
+    total.textContent = '$0.00';
+    return;
+  }
+  const p = products[sel];
+  const tax = 0;
+  const grand = p.price + tax;
+  lines.innerHTML = `
+    <div class="order-line"><span>${p.name}</span><span>$${p.price.toFixed(2)}</span></div>
+    <div class="order-line"><span style="color:var(--mid);">Delivery Type</span><span style="color:var(--mid);">${p.type}</span></div>
+    <div class="order-line"><span style="color:var(--mid);">Tax</span><span style="color:var(--mid);">$0.00</span></div>
+  `;
+  total.textContent = '$' + grand.toFixed(2);
+}
+
+// ── PROMO CODE ──
+function applyPromo() {
+  const code = document.getElementById('promo-input').value.toUpperCase().trim();
+  const msg = document.getElementById('promo-msg');
+  const codes = { 'MINEAR10': '10% off applied!', 'LAUNCH25': '25% off applied!', 'TRADES': '$5 off applied!' };
+  if (codes[code]) {
+    msg.style.color = '#6ecf8e';
+    msg.textContent = '✓ ' + codes[code];
+    showToast('Promo code applied: ' + codes[code]);
+  } else {
+    msg.style.color = '#f07b5e';
+    msg.textContent = '✗ Invalid promo code';
+  }
+}
+
+// ── PROCESS PAYMENT ──
+function processPayment() {
+  const sel = document.getElementById('product-select').value;
+  const email = document.getElementById('customer-email').value;
+  if (!sel) { showToast('⚠️ Please select a product first'); return; }
+  if (!email || !email.includes('@')) { showToast('⚠️ Please enter a valid email'); return; }
+
+  const btn = event.target;
+  btn.textContent = '⏳ Processing...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('payment-form-area').style.display = 'none';
+    const sc = document.getElementById('success-screen');
+    sc.classList.add('show');
+    const p = products[sel] || { name: 'your order' };
+    document.getElementById('success-detail').textContent =
+      `Payment confirmed for "${p.name}". A receipt and download link have been sent to ${email}. Check your inbox (and spam folder just in case).`;
+
+    // Advance step indicators
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('step2').classList.add('done');
+    document.getElementById('step2').querySelector('.step-num').textContent = '✓';
+    document.getElementById('step3').classList.add('active');
+    showToast('✅ Payment successful! Email sent.');
+  }, 2000);
+}
+
+function resetCheckout() {
+  document.getElementById('payment-form-area').style.display = 'block';
+  document.getElementById('success-screen').classList.remove('show');
+  document.getElementById('product-select').value = '';
+  updateOrder();
+  const btn = document.querySelector('#payment-form-area .btn-amber');
+  if(btn){ btn.textContent = '🔒 Complete Purchase'; btn.disabled = false; }
+}
+
+// ── INVOICE GENERATOR ──
+function generateInvoice() {
+  document.getElementById('prev-num').textContent = document.getElementById('inv-num').value || 'MWK-2026-001';
+
+  const d = document.getElementById('inv-date').value;
+  const due = document.getElementById('inv-due').value;
+  document.getElementById('prev-date').textContent = d ? new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
+  document.getElementById('prev-due').textContent = due ? new Date(due).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '—';
+
+  const status = document.getElementById('inv-status-sel').value;
+  const statusEl = document.getElementById('prev-status');
+  statusEl.textContent = status.toUpperCase();
+  statusEl.className = 'inv-status' + (status === 'paid' ? ' paid' : '');
+
+  document.getElementById('prev-client').textContent = document.getElementById('inv-client-name').value || '—';
+  document.getElementById('prev-addr').innerHTML =
+    (document.getElementById('inv-client-email').value || '') + '<br>' +
+    (document.getElementById('inv-client-addr').value || '').replace(/\n/g,'<br>');
+
+  // Build line items from form
+  const rows = document.querySelectorAll('.line-item');
+  let subtotal = 0;
+  let tbody = '';
+  rows.forEach(row => {
+    const inputs = row.querySelectorAll('input');
+    if (inputs.length < 3) return;
+    const desc = inputs[0].value || 'Item';
+    const qty = parseFloat(inputs[1].value) || 1;
+    const price = parseFloat(inputs[2].value) || 0;
+    const lineTotal = qty * price;
+    subtotal += lineTotal;
+    tbody += `<tr><td><div class="item-name">${desc}</div></td><td style="text-align:center;">${qty}</td><td>$${price.toFixed(2)}</td><td>$${lineTotal.toFixed(2)}</td></tr>`;
+  });
+  document.getElementById('prev-lines').innerHTML = tbody || '<tr><td colspan="4" style="color:#aaa;">No items added</td></tr>';
+  document.getElementById('prev-subtotal').textContent = '$' + subtotal.toFixed(2);
+  document.getElementById('prev-total').textContent = '$' + subtotal.toFixed(2);
+  document.querySelector('.inv-pay-btn').textContent = 'Pay Now — $' + subtotal.toFixed(2);
+  document.getElementById('prev-notes').innerHTML = (document.getElementById('inv-notes').value || '').replace(/\n/g,'<br>');
+  showToast('✓ Inv
