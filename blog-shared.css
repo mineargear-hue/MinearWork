@@ -1,0 +1,67 @@
+/* SHARED BLOG STYLESHEET — MinearWorks */
+:root {
+  --navy: #0a0f18;
+  --navy2: #111c2b;
+  --gold: #D4AF37;
+  --gold2: #f0cc50;
+  --copper: #B87333;
+  --ember: #E05C1A;
+  --teal: #40C8E0;
+  --white: #f0ead8;
+  --dim: #8a9ab0;
+  --line: rgba(212,175,55,0.15);
+  --grid: rgba(212,175,55,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{background:var(--navy);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.7}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+nav{position:sticky;top:0;z-index:100;height:54px;display:flex;justify-content:space-between;align-items:center;padding:0 20px;background:rgba(8,12,20,.97);backdrop-filter:blur(16px);border-bottom:2px solid var(--gold)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.16em;color:var(--gold);text-decoration:none}
+.logo span{color:var(--dim)}
+.nav-links{display:flex;gap:14px}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.article-wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:48px 20px 80px}
+.article-tag{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.tag-gold{color:var(--gold)}
+.tag-ember{color:var(--ember)}
+.tag-teal{color:var(--teal)}
+.article-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,7vw,4rem);letter-spacing:.05em;line-height:.95;margin-bottom:16px}
+.article-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.meta-item{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.meta-item strong{color:var(--gold)}
+.article-intro{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;letter-spacing:.04em;color:var(--white);line-height:1.6;margin-bottom:32px;padding:16px;border-left:3px solid var(--gold);background:rgba(212,175,55,.04)}
+.article-body h2{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.07em;color:var(--gold);margin:40px 0 12px;line-height:1}
+.article-body h3{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.07em;color:var(--white);margin:24px 0 8px}
+.article-body p{font-family:'Barlow',sans-serif;font-size:.88rem;font-weight:300;color:var(--dim);line-height:1.8;margin-bottom:16px}
+.article-body p strong{color:var(--white);font-weight:600}
+.article-body ul,.article-body ol{margin:0 0 16px 20px}
+.article-body li{font-family:'Barlow',sans-serif;font-size:.85rem;font-weight:300;color:var(--dim);line-height:1.7;margin-bottom:6px}
+.article-body li strong{color:var(--white)}
+.tip-box{background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.25);border-left:4px solid var(--gold);padding:16px 20px;margin:24px 0}
+.tip-box .tip-label{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+.tip-box p{color:var(--white-dim,#c8bfa0);margin:0;font-size:.84rem}
+.warning-box{background:rgba(224,92,26,.06);border:1px solid rgba(224,92,26,.25);border-left:4px solid var(--ember);padding:16px 20px;margin:24px 0}
+.warning-box .tip-label{color:var(--ember)}
+.warning-box p{color:var(--white-dim,#c8bfa0);margin:0;font-size:.84rem}
+.gear-rec{display:grid;grid-template-columns:64px 1fr;background:var(--navy2);border:1px solid rgba(212,175,55,.15);border-left:3px solid var(--gold);margin:20px 0;overflow:hidden;transition:transform .15s}
+.gear-rec:hover{transform:translateY(-2px)}
+.gr-img{background:#0d1520;display:flex;align-items:center;justify-content:center;min-height:72px;border-right:1px solid rgba(212,175,55,.1)}
+.gr-img span{font-family:'Share Tech Mono',monospace;font-size:.42rem;color:rgba(212,175,55,.3);text-align:center;padding:6px;line-height:1.4}
+.gr-body{padding:10px 14px;display:flex;flex-direction:column;justify-content:center}
+.gr-label{font-family:'Share Tech Mono',monospace;font-size:.48rem;letter-spacing:.16em;color:var(--copper);text-transform:uppercase;margin-bottom:3px}
+.gr-name{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.05em;color:var(--white);margin-bottom:6px}
+.gr-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Bebas Neue',sans-serif;font-size:.8rem;letter-spacing:.1em;padding:6px 12px;background:var(--gold);color:var(--navy);text-decoration:none;transition:background .15s;align-self:flex-start}
+.gr-btn:active{background:var(--gold2)}
+.divider{height:1px;background:var(--line);margin:32px 0}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-decoration:none;margin-bottom:32px;transition:color .2s}
+.back-link:hover{color:var(--gold)}
+.floating-cta{position:fixed;bottom:20px;right:16px;z-index:999;background:var(--gold);color:var(--navy);padding:11px 18px;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;text-decoration:none;border-radius:50px;box-shadow:0 8px 28px rgba(212,175,55,.45);animation:floatBounce 2.2s ease-in-out infinite;display:flex;align-items:center;gap:6px}
+@keyframes floatBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:24px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.14em;color:var(--gold);text-decoration:none}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-family:'Share Tech Mono',monospace;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-decoration:none}
+.footer-links a:hover{color:var(--gold)}
+.footer-copy{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.08em;color:rgba(200,191,160,.3);line-height:1.6}
