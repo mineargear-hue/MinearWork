@@ -583,6 +583,139 @@
     50%      { transform: translateY(-7px); box-shadow: 0 16px 36px rgba(212,175,55,.6); }
   }
 
+  /* ── FLOATING BLOG CTA ── */
+  .floating-blog {
+    position: fixed;
+    bottom: 22px;
+    left: 18px;
+    z-index: 999;
+    background: linear-gradient(135deg, #40C8E0, #1a8fa8);
+    color: #0a0f18;
+    padding: 13px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 28px rgba(64,200,224,0.5);
+    animation: blogBounce 2.6s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .floating-blog:active { transform: scale(0.96); }
+  @keyframes blogBounce {
+    0%,100% { transform: translateY(0); box-shadow: 0 8px 28px rgba(64,200,224,.45); }
+    50%      { transform: translateY(-8px); box-shadow: 0 18px 38px rgba(64,200,224,.7); }
+  }
+
+  /* ── BLOG PREVIEW SECTION ── */
+  .blog-preview {
+    position: relative;
+    z-index: 1;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 56px 20px 64px;
+    border-top: 1px solid rgba(64,200,224,.2);
+  }
+  .blog-preview-header { text-align: center; margin-bottom: 28px; }
+  .blog-preview-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .6rem;
+    letter-spacing: .28em;
+    color: #40C8E0;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .blog-preview-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    letter-spacing: .07em;
+    line-height: .95;
+    color: var(--white);
+    animation: blogGlow 3s ease-in-out infinite;
+  }
+  .blog-preview-title em { font-style: normal; color: #40C8E0; }
+  @keyframes blogGlow {
+    0%,100% { text-shadow: 0 0 4px rgba(64,200,224,.1); }
+    50%      { text-shadow: 0 0 22px rgba(64,200,224,.6); }
+  }
+  .blog-preview-line {
+    width: 48px; height: 2px;
+    background: #40C8E0;
+    margin: 14px auto 24px;
+    animation: lineExpand 2s ease-in-out infinite alternate;
+  }
+  .blog-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+  .blog-mini {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    background: rgba(64,200,224,.04);
+    border: 1px solid rgba(64,200,224,.15);
+    border-left: 3px solid #40C8E0;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+    opacity: 0;
+    animation: gpSlide .4s ease forwards;
+  }
+  .blog-mini:nth-child(1) { animation-delay: .1s; }
+  .blog-mini:nth-child(2) { animation-delay: .2s; }
+  .blog-mini:nth-child(3) { animation-delay: .3s; }
+  .blog-mini:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(64,200,224,.18); }
+  .blog-mini:active { transform: scale(.99); }
+  .bm-icon {
+    background: rgba(64,200,224,.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    border-right: 1px solid rgba(64,200,224,.1);
+  }
+  .bm-body { padding: 10px 14px; }
+  .bm-cat {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .48rem;
+    letter-spacing: .18em;
+    color: #40C8E0;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .bm-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: .95rem;
+    letter-spacing: .05em;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .blog-btn-full {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #40C8E0, #1a8fa8);
+    color: #0a0f18;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: .14em;
+    padding: 14px 24px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-btn-full::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -120%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+    animation: btnShine 2.8s infinite;
+  }
+  .blog-btn-full:active { opacity: .9; }
+  @media (max-width: 600px) {
+    .blog-preview { padding: 40px 16px 48px; }
+    .floating-blog { font-size: .82rem; padding: 11px 16px; }
+  }
+
   /* ── ANIMATED GEAR PREVIEW on main page ── */
   .gear-preview {
     position: relative;
@@ -974,7 +1107,48 @@
 
 </section>
 
-<!-- FLOATING CTA -->
+
+<!-- ══ BLOG PREVIEW SECTION ══ -->
+<section class="blog-preview" id="blog">
+  <div class="blog-preview-header">
+    <p class="blog-preview-tag">// Field Notes & Trade Knowledge</p>
+    <h2 class="blog-preview-title">The <em>Blog</em></h2>
+    <div class="blog-preview-line"></div>
+  </div>
+
+  <div class="blog-cards">
+    <a class="blog-mini" href="blog-boiler-exam.html">
+      <div class="bm-icon">🔥</div>
+      <div class="bm-body">
+        <div class="bm-cat">// Boiler & Steam · License Prep</div>
+        <div class="bm-title">10 Things Every Boiler Operator Should Know Before Their License Exam</div>
+      </div>
+    </a>
+    <a class="blog-mini" href="blog-first-year.html">
+      <div class="bm-icon">⚡</div>
+      <div class="bm-body">
+        <div class="bm-cat">// Electrical · Apprentice Guide</div>
+        <div class="bm-title">The Electrician's First Year Survival Guide</div>
+      </div>
+    </a>
+    <a class="blog-mini" href="blog-apprentice-tools.html">
+      <div class="bm-icon">🔧</div>
+      <div class="bm-body">
+        <div class="bm-cat">// Electrical · Tools</div>
+        <div class="bm-title">10 Tools Every Apprentice Electrician Needs on Day One</div>
+      </div>
+    </a>
+  </div>
+
+  <a href="blog-index.html" class="blog-btn-full">
+    📖 Read All 5 Field Guides →
+  </a>
+</section>
+
+<!-- FLOATING BLOG BUBBLE -->
+<a class="floating-blog" href="blog-index.html">📖 Field Notes</a>
+
+<!-- FLOATING GEAR BUBBLE -->
 <a class="floating-cta" href="https://gear.minearworks.com">🔥 Shop Doug's Picks</a>
 
 </body>
