@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Wire Stretcher's Handbook — A Civilian's Field Guide to the Electrical Trade. 22 chapters of electrician humor, trade culture, and field wisdom. Available on Amazon Kindle.">
+<meta name="p:domain_verify" content="d749205c137414529951bd3fe96e4a47"/>
+<title>The Wire Stretcher's Handbook | MinearWorks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1017;
+    --navy2: #1A2332;
+    --gold: #D4AF37;
+    --copper: #B87333;
+    --ember: #E05C1A;
+    --teal: #40C8E0;
+    --text: #c8d0dc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--navy); color: var(--text); font-family: 'Barlow', sans-serif; font-weight: 300; }
+
+  nav {
+    background: var(--navy2);
+    border-bottom: 1px solid var(--gold);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); letter-spacing: 3px; text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--text); text-decoration: none; font-size: 13px; letter-spacing: 2px; font-family: 'Share Tech Mono', monospace; opacity: 0.7; }
+  .nav-links a:hover { color: var(--gold); opacity: 1; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0d1520 0%, var(--navy) 60%);
+    border-bottom: 3px solid var(--ember);
+    padding: 80px 40px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  /* COVER MOCK */
+  .cover-img-wrap {
+    background: var(--navy2);
+    border: 2px solid var(--ember);
+    border-radius: 4px;
+    padding: 36px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--ember);
+  }
+  .cover-badge {
+    display: inline-block;
+    background: var(--ember);
+    color: #fff;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+  .cover-bolt {
+    font-size: 72px;
+    line-height: 1;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 12px #E05C1A88);
+  }
+  .cover-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .cover-title-small {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--ember);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+  .cover-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--ember);
+    margin: 0 auto 20px;
+  }
+  .cover-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: var(--teal);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .cover-chapters {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    opacity: 0.5;
+    letter-spacing: 3px;
+  }
+
+  /* HERO TEXT */
+  .hero-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--ember);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 58px);
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .hero-title em { font-style: normal; color: var(--ember); }
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+  .hero-desc strong { color: var(--gold); font-weight: 600; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--ember);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    padding: 16px 40px;
+    text-decoration: none;
+    margin-bottom: 12px;
+  }
+  .btn-primary:hover { background: #F06B28; }
+  .kindle-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.5;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 40px;
+    border-bottom: 1px solid #D4AF3718;
+  }
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--ember);
+    letter-spacing: 5px;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+  }
+  .section-title em { font-style: normal; color: var(--ember); }
+
+  /* WHO GRID */
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .who-card {
+    background: var(--navy2);
+    border-left: 3px solid var(--ember);
+    padding: 24px;
+  }
+  .who-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--ember);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .who-card p { font-size: 14px; line-height: 1.6; opacity: 0.8; }
+
+  /* CHAPTERS */
+  .chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .chapter-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #D4AF3715;
+  }
+  .chapter-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--ember);
+    letter-spacing: 2px;
+    min-width: 36px;
+    margin-top: 2px;
+  }
+  .chapter-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    background: var(--navy2);
+    border-left: 4px solid var(--ember);
+    padding: 32px 40px;
+    margin: 40px 0;
+    max-width: 800px;
+  }
+  .quote-block blockquote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.6;
+    letter-spacing: 2px;
+  }
+
+  /* SAMPLE TOPICS */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .topic-card {
+    background: var(--navy2);
+    border: 1px solid #D4AF3720;
+    padding: 20px 24px;
+    border-top: 2px solid var(--ember);
+  }
+  .topic-card p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.5;
+    opacity: 0.85;
+  }
+  .topic-card p::before {
+    content: '// ';
+    color: var(--ember);
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  /* CTA BOTTOM */
+  .cta-bottom {
+    background: var(--navy2);
+    border-top: 3px solid var(--ember);
+    text-align: center;
+    padding: 70px 40px;
+  }
+  .cta-bottom h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .cta-bottom h2 em { font-style: normal; color: var(--ember); }
+  .cta-bottom p {
+    font-size: 16px;
+    max-width: 540px;
+    margin: 0 auto 32px;
+    opacity: 0.8;
+    line-height: 1.7;
+  }
+  .price-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    letter-spacing: 3px;
+    margin-top: 20px;
+    opacity: 0.7;
+  }
+
+  footer {
+    background: var(--navy);
+    border-top: 1px solid #D4AF3720;
+    text-align: center;
+    padding: 30px 40px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.5;
+    letter-spacing: 2px;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 40px 20px; gap: 40px; }
+    .section { padding: 50px 20px; }
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://minearworks.com" class="nav-logo">MinearWorks</a>
+  <div class="nav-links">
+    <a href="https://minearworks.com">Home</a>
+    <a href="https://gear.minearworks.com">Gear</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="background: linear-gradient(160deg, #0d1520 0%, #0b1017 100%); border-bottom: 3px solid var(--ember);">
+  <div class="hero">
+    <div class="hero-cover">
+      <div class="cover-img-wrap">
+        <div class="cover-badge">KINDLE EDITION</div>
+        <div class="cover-bolt">⚡</div>
+        <div class="cover-title">THE WIRE STRETCHER'S</div>
+        <div class="cover-title-small">HANDBOOK</div>
+        <div class="cover-divider"></div>
+        <div class="cover-sub">A Civilian's Field Guide to the Electrical Trade</div>
+        <div class="cover-chapters">22 CHAPTERS · KINDLE EDITION</div>
+      </div>
+    </div>
+    <div class="hero-text">
+      <div class="hero-label">// Electrician Humor · Trade Culture · Field Wisdom</div>
+      <h1 class="hero-title">The Book <em>Every Sparky</em> Wished Existed</h1>
+      <div class="hero-sub">22 Chapters · Kindle Edition</div>
+      <p class="hero-desc">Written by a C-10 licensed electrical contractor with 25 years in the field. The unwritten rules, the broom evasion tactics, the apprentice survival guide — everything they don't teach you in the classroom but learn the hard way on the job.</p>
+      <a href="https://www.amazon.com/dp/B0GYL4ZRWT?tag=minearworks-20" class="btn-primary">GET IT ON AMAZON</a>
+      <br>
+      <div class="kindle-note">// Available on Kindle · Read free with Kindle Unlimited</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<div class="section">
+  <div class="section-label">// Audience</div>
+  <h2 class="section-title">Written <em>For</em> The Trade</h2>
+  <div class="who-grid">
+    <div class="who-card">
+      <h3>Journeymen</h3>
+      <p>You've earned it. This is the book that validates everything you already know — and names the things you've never been able to explain to civilians.</p>
+    </div>
+    <div class="who-card">
+      <h3>Apprentices</h3>
+      <p>Year one survival guide. Learn the unwritten rules before you learn them the hard way. Broom evasion starts on day one.</p>
+    </div>
+    <div class="who-card">
+      <h3>Foremen & Supers</h3>
+      <p>The field leadership chapter alone is worth it. Managing a crew of electricians is its own discipline — this covers it straight.</p>
+    </div>
+    <div class="who-card">
+      <h3>Electrical Contractors</h3>
+      <p>C-10, C-7, whatever ticket you're holding — the business side of the trade is covered alongside the field side.</p>
+    </div>
+    <div class="who-card">
+      <h3>Trade School Students</h3>
+      <p>The classroom gives you theory. This gives you trade culture — which is what determines whether you last.</p>
+    </div>
+    <div class="who-card">
+      <h3>Anyone Who Works With Electricians</h3>
+      <p>GCs, PMs, inspectors, owners — finally understand what's actually happening on the electrical side of your job site.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SAMPLE TOPICS -->
+<div class="section">
+  <div class="section-label">// Inside The Book</div>
+  <h2 class="section-title">What's <em>Actually</em> In It</h2>
+  <div class="topics-grid">
+    <div class="topic-card"><p>The broom — what it means, when it appears, and how to make it disappear</p></div>
+    <div class="topic-card"><p>Apprentice hierarchy: the unspoken rules nobody tells you about</p></div>
+    <div class="topic-card"><p>Why electricians argue about wire gauge at 6am before coffee</p></div>
+    <div class="topic-card"><p>The difference between a journeyman and someone who thinks they are one</p></div>
+    <div class="topic-card"><p>Job site politics: GCs, supers, inspectors, and the pecking order</p></div>
+    <div class="topic-card"><p>Tools — what to own, what to borrow, and what disappears in the first week</p></div>
+    <div class="topic-card"><p>The Friday afternoon rule and why experienced electricians know it cold</p></div>
+    <div class="topic-card"><p>Code vs field reality — what the book says and what actually happens</p></div>
+  </div>
+</div>
+
+<!-- CHAPTERS -->
+<div class="section">
+  <div class="section-label">// Contents</div>
+  <h2 class="section-title">22 <em>Chapters</em> — Full Scope</h2>
+  <div class="chapters-grid">
+    <div class="chapter-item"><span class="chapter-num">CH 01</span><span class="chapter-name">Welcome to the Trade</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 02</span><span class="chapter-name">The Apprentice Years</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 03</span><span class="chapter-name">Tools of the Trade</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 04</span><span class="chapter-name">The Job Site Ecosystem</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 05</span><span class="chapter-name">Wire, Cable & Conduit</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 06</span><span class="chapter-name">The Unwritten Rules</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 07</span><span class="chapter-name">Working With Inspectors</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 08</span><span class="chapter-name">The Foreman Dynamic</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 09</span><span class="chapter-name">Residential vs Commercial vs Industrial</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 10</span><span class="chapter-name">The Broom & Other Field Traditions</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 11</span><span class="chapter-name">Safety — The Real Version</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 12</span><span class="chapter-name">Union vs Non-Union</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 13</span><span class="chapter-name">The Contractor Life</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 14</span><span class="chapter-name">Dealing With GCs</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 15</span><span class="chapter-name">Estimating & Bidding</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 16</span><span class="chapter-name">Service Work vs New Construction</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 17</span><span class="chapter-name">The Journeyman Mindset</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 18</span><span class="chapter-name">Troubleshooting Without Losing Your Mind</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 19</span><span class="chapter-name">Tools That Actually Matter</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 20</span><span class="chapter-name">The Friday Afternoon Rule</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 21</span><span class="chapter-name">Surviving the Trade Long-Term</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 22</span><span class="chapter-name">What the Trade Gives Back</span></div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="section" style="border-bottom: none; padding-bottom: 20px;">
+  <div class="quote-block">
+    <blockquote>"25 years in the field. This is what I wished someone had handed me on day one of my apprenticeship."</blockquote>
+    <div class="quote-attr">// C-10 LICENSED ELECTRICAL CONTRACTOR · 25 YEARS · MINEARWORKS</div>
+  </div>
+</div>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <h2>Available <em>Now</em> on Amazon</h2>
+  <p>Kindle edition — read on any device. No Kindle hardware required. Free with Kindle Unlimited membership.</p>
+  <a href="https://www.amazon.com/dp/B0GYL4ZRWT?tag=minearworks-20" class="btn-primary">GET IT ON AMAZON →</a>
+  <div class="price-note">// ASIN: B0GYL4ZRWT · KINDLE EDITION · MINEARWORKS</div>
+</div>
+
+<footer>
+  &copy; 2025 MinearWorks · <a href="https://minearworks.com">minearworks.com</a> · All rights reserved
+</footer>
+
+</body>
+</html>
