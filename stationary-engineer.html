@@ -2,7 +2,20 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R9CKFRTMYF"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMPTVH5X5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DHMPTVH5X5');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(a && a.href && a.href.includes('amazon.com')){
+      gtag('event','affiliate_click',{link_url:a.href,page_location:window.location.href});
+    }
+  });
+</script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
