@@ -3,147 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog & Field Notes | MinearWorks</title>
-<meta name="description" content="Trade knowledge from 25 years in the field. Boiler operations, electrical work, license exam prep, and tools — no theory, no fluff.">
+<title>Field Notes | MinearWorks — Trades Knowledge from the Job Site</title>
+<meta name="description" content="25 years of electrical and boiler room knowledge. Tools, licensing, field techniques, and trade career guides from Doug Minear.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="blog-shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-.blog-hero{position:relative;z-index:1;padding:56px 20px 40px;text-align:center;border-bottom:1px solid rgba(212,175,55,.15)}
-.blog-hero-tag{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.28em;color:var(--copper);text-transform:uppercase;margin-bottom:12px}
-.blog-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,9vw,5rem);letter-spacing:.06em;line-height:.95}
-.blog-hero h1 em{font-style:normal;color:var(--gold)}
-.blog-hero p{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;letter-spacing:.06em;color:var(--dim);margin-top:14px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6}
-.blog-grid{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:32px 16px 80px;display:flex;flex-direction:column;gap:16px}
-.post-card{background:var(--navy2);border:1px solid rgba(212,175,55,.12);overflow:hidden;transition:transform .2s,box-shadow .2s;display:block;text-decoration:none;opacity:0;animation:slideIn .4s ease forwards}
-.post-card:nth-child(1){animation-delay:.05s;border-left:4px solid var(--gold)}
-.post-card:nth-child(2){animation-delay:.1s;border-left:4px solid var(--ember)}
-.post-card:nth-child(3){animation-delay:.15s;border-left:4px solid var(--ember)}
-.post-card:nth-child(4){animation-delay:.2s;border-left:4px solid var(--gold)}
-.post-card:nth-child(5){animation-delay:.25s;border-left:4px solid var(--ember)}
-.post-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(212,175,55,.15)}
-.post-card:active{transform:scale(.99)}
-.pc-body{padding:18px 20px}
-.pc-cat{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
-.cat-boiler{color:var(--gold)}
-.cat-electrical{color:var(--ember)}
-.pc-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.05em;color:var(--white);line-height:1.05;margin-bottom:8px}
-.pc-excerpt{font-family:'Barlow',sans-serif;font-size:.78rem;font-weight:300;color:var(--dim);line-height:1.6;margin-bottom:12px}
-.pc-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.pc-read{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
-.pc-arrow{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.1em;color:var(--gold)}
-.cat-filter{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 16px;display:flex;gap:10px;flex-wrap:wrap}
-.cf-btn{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.2);padding:7px 14px;cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent}
-.cf-btn.active,.cf-btn:active{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+:root{--navy:#0b1017;--navy2:#111c2b;--gold:#D4AF37;--copper:#B87333;--ember:#E05C1A;--teal:#40C8E0;--white:#f0ead8;--dim:#8a9ab0;--line:rgba(212,175,55,0.15);--grid:rgba(212,175,55,0.04)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+nav{position:sticky;top:0;z-index:100;height:54px;display:flex;justify-content:space-between;align-items:center;padding:0 20px;background:rgba(8,12,20,.97);border-bottom:2px solid var(--gold)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:.16em;color:var(--gold);text-decoration:none}
+.logo span{color:var(--dim)}
+.nav-links{display:flex;gap:14px}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-decoration:none}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.hero{position:relative;z-index:1;padding:48px 20px 32px;text-align:center;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(212,175,55,.06) 0%,transparent 100%)}
+.hero-tag{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.28em;color:var(--copper);text-transform:uppercase;margin-bottom:12px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,10vw,5rem);letter-spacing:.06em;line-height:.95;color:var(--white)}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;color:var(--dim);margin:14px auto 0;max-width:440px;line-height:1.55}
+.hero-line{width:48px;height:2px;background:var(--gold);margin:20px auto 0}
+.filter-wrap{position:sticky;top:54px;z-index:90;background:rgba(8,12,20,.95);border-bottom:1px solid var(--line);padding:10px 16px;overflow-x:auto;scrollbar-width:none}
+.filter-wrap::-webkit-scrollbar{display:none}
+.pill-row{display:flex;gap:8px;width:max-content}
+.pill{font-family:'Share Tech Mono',monospace;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.2);padding:7px 14px;border-radius:2px;cursor:pointer;white-space:nowrap;transition:all .18s}
+.pill.active{background:var(--gold);color:#0b1017;border-color:var(--gold)}
+.feed{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:24px 16px 80px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--navy2);border:1px solid rgba(212,175,55,.1);border-left:3px solid var(--gold);padding:18px 20px;text-decoration:none;display:block;transition:border-color .2s,transform .15s;opacity:0;animation:slideIn .4s ease forwards}
+.card:nth-child(1){animation-delay:.03s}.card:nth-child(2){animation-delay:.06s}.card:nth-child(3){animation-delay:.09s}.card:nth-child(4){animation-delay:.12s}.card:nth-child(5){animation-delay:.15s}.card:nth-child(6){animation-delay:.18s}.card:nth-child(7){animation-delay:.21s}.card:nth-child(8){animation-delay:.24s}.card:nth-child(9){animation-delay:.27s}.card:nth-child(10){animation-delay:.30s}.card:nth-child(11){animation-delay:.33s}.card:nth-child(12){animation-delay:.36s}.card:nth-child(13){animation-delay:.39s}.card:nth-child(14){animation-delay:.42s}.card:nth-child(15){animation-delay:.45s}.card:nth-child(16){animation-delay:.48s}.card:nth-child(17){animation-delay:.51s}.card:nth-child(18){animation-delay:.54s}.card:nth-child(19){animation-delay:.57s}.card:nth-child(20){animation-delay:.60s}
+.card:hover{border-color:rgba(212,175,55,.4);transform:translateX(4px)}
+.card-cat{font-family:'Share Tech Mono',monospace;font-size:.5rem;letter-spacing:.2em;color:var(--copper);text-transform:uppercase;margin-bottom:6px}
+.card-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.05em;color:var(--white);line-height:1.1;margin-bottom:6px}
+.card-desc{font-family:'Barlow',sans-serif;font-size:.78rem;font-weight:300;color:var(--dim);line-height:1.5;margin-bottom:10px}
+.card-meta{display:flex;gap:12px;align-items:center}
+.card-read{font-family:'Share Tech Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:var(--dim)}
+.card-arrow{font-family:'Bebas Neue',sans-serif;font-size:.78rem;letter-spacing:.1em;color:var(--gold);margin-left:auto}
+.gear-bar{position:relative;z-index:1;background:var(--navy2);border-top:2px solid var(--gold);border-bottom:1px solid var(--line);padding:20px;text-align:center}
+.gear-bar p{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.14em;color:var(--dim);margin-bottom:12px}
+.btn-gear{display:inline-flex;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.12em;padding:10px 22px;background:var(--gold);color:#0b1017;text-decoration:none}
+footer{position:relative;z-index:1;border-top:1px solid var(--line);padding:24px 20px;text-align:center}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.14em;color:var(--gold);text-decoration:none}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.footer-links a{font-family:'Share Tech Mono',monospace;font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-decoration:none}
+.footer-copy{font-family:'Share Tech Mono',monospace;font-size:.48rem;color:rgba(200,191,160,.3);margin-top:8px}
 @keyframes slideIn{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:translateX(0)}}
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMPTVH5X5"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-DHMPTVH5X5');</script>
 </head>
 <body>
 <nav>
   <a href="https://minearworks.com" class="logo">Minear<span>Works</span></a>
   <div class="nav-links">
     <a href="https://minearworks.com">Home</a>
+    <a href="blog-index.html" class="active">Blog</a>
+    <a href="https://gear.minearworks.com/shop.html">Gear</a>
     <a href="https://minearworks.com/#books">Books</a>
-    <a href="https://gear.minearworks.com">Gear</a>
-    <a href="blog-index.html">Blog</a>
   </div>
 </nav>
 
-<div class="blog-hero">
-  <p class="blog-hero-tag">// Field Notes from 25 Years in the Trades</p>
-  <h1>The <em>Blog</em></h1>
-  <p>Trade knowledge that only comes from showing up every day. Boiler operations, electrical work, license prep, and gear — no theory, no fluff, no classroom.</p>
+<div class="hero">
+  <p class="hero-tag">// Field Notes · 25 Years In the Trade</p>
+  <h1>Trade Knowledge<br><em>No Filler</em></h1>
+  <p class="hero-sub">Tools, licensing, field techniques, and career guides from a C-10 contractor and licensed stationary engineer.</p>
+  <div class="hero-line"></div>
 </div>
 
-<div class="cat-filter" style="margin-top:24px">
-  <button class="cf-btn active" onclick="filterPosts('all',this)">All Posts</button>
-  <button class="cf-btn" onclick="filterPosts('boiler',this)">Boiler & Steam</button>
-  <button class="cf-btn" onclick="filterPosts('electrical',this)">Electrical</button>
+<div class="filter-wrap">
+  <div class="pill-row">
+    <span class="pill active" onclick="filter('all',this)">All Posts</span>
+    <span class="pill" onclick="filter('electrical',this)">Electrical</span>
+    <span class="pill" onclick="filter('boiler',this)">Boiler &amp; Steam</span>
+    <span class="pill" onclick="filter('tools',this)">Tools &amp; Gear</span>
+    <span class="pill" onclick="filter('licensing',this)">Licensing</span>
+    <span class="pill" onclick="filter('career',this)">Career</span>
+  </div>
 </div>
 
-<div class="blog-grid" id="blogGrid">
+<div class="feed" id="feed">
 
-  <a class="post-card" href="blog-boiler-exam.html" data-cat="boiler">
-    <div class="pc-body">
-      <div class="pc-cat cat-boiler">// Boiler & Steam · License Prep</div>
-      <div class="pc-title">10 Things Every Boiler Operator Should Know Before Their License Exam</div>
-      <p class="pc-excerpt">25 years in the boiler room distilled into 10 things that actually show up on your stationary engineer license exam. Field knowledge, not textbook fluff.</p>
-      <div class="pc-meta">
-        <span class="pc-read">8 min read</span>
-        <span class="pc-arrow">Read Article →</span>
-      </div>
-    </div>
+  <a class="card" href="blog-electrical-bag.html" data-cat="tools electrical">
+    <div class="card-cat">// Tools &amp; Field Setup</div>
+    <div class="card-title">What's in My Electrical Bag</div>
+    <div class="card-desc">25 years in. Here's exactly what Doug Minear carries on every commercial job — and why.</div>
+    <div class="card-meta"><span class="card-read">8 min read</span><span class="card-arrow">Read →</span></div>
   </a>
 
-  <a class="post-card" href="blog-first-year.html" data-cat="electrical">
-    <div class="pc-body">
-      <div class="pc-cat cat-electrical">// Electrical Trade · Apprentice Guide</div>
-      <div class="pc-title">The Electrician's First Year Survival Guide</div>
-      <p class="pc-excerpt">What they don't tell you before your first day as an electrical apprentice. Straight talk from a C-10 contractor with 25 years in the trade.</p>
-      <div class="pc-meta">
-        <span class="pc-read">9 min read</span>
-        <span class="pc-arrow">Read Article →</span>
-      </div>
-    </div>
+  <a class="card" href="blog-best-multimeter.html" data-cat="tools electrical">
+    <div class="card-cat">// Test Equipment</div>
+    <div class="card-title">Best Multimeter for Field Work</div>
+    <div class="card-desc">Field-tested picks. The Fluke 117, why it survives, and what to carry alongside it.</div>
+    <div class="card-meta"><span class="card-read">7 min read</span><span class="card-arrow">Read →</span></div>
   </a>
 
-  <a class="post-card" href="blog-nec-guide.html" data-cat="electrical">
-    <div class="pc-body">
-      <div class="pc-cat cat-electrical">// Electrical Trade · Code Reference</div>
-      <div class="pc-title">How to Read the NEC Without Losing Your Mind</div>
-      <p class="pc-excerpt">The National Electrical Code isn't impossible — you just need to know how it's organized. A C-10 contractor breaks it down in plain English.</p>
-      <div class="pc-meta">
-        <span class="pc-read">7 min read</span>
-        <span class="pc-arrow">Read Article →</span>
-      </div>
-    </div>
+  <a class="card" href="blog-combustion-analysis.html" data-cat="boiler">
+    <div class="card-cat">// Boiler Operations</div>
+    <div class="card-title">Combustion Analysis: What Every Boiler Op Needs to Know</div>
+    <div class="card-desc">What the numbers mean, what equipment to use, and why this is the diagnostic tool that matters most.</div>
+    <div class="card-meta"><span class="card-read">9 min read</span><span class="card-arrow">Read →</span></div>
   </a>
 
-  <a class="post-card" href="blog-water-treatment.html" data-cat="boiler">
-    <div class="pc-body">
-      <div class="pc-cat cat-boiler">// Boiler & Steam · Water Treatment</div>
-      <div class="pc-title">Boiler Water Treatment 101 — What They Don't Teach You in Class</div>
-      <p class="pc-excerpt">Scale, corrosion, and carryover are the three ways untreated water destroys boiler systems. Here's what you actually need to know to stop all three.</p>
-      <div class="pc-meta">
-        <span class="pc-read">8 min read</span>
-        <span class="pc-arrow">Read Article →</span>
-      </div>
-    </div>
+  <a class="card" href="blog-insulated-tools.html" data-cat="tools electrical">
+    <div class="card-cat">// Safety · Hand Tools</div>
+    <div class="card-title">Insulated Tools: Why They're Non-Negotiable</div>
+    <div class="card-desc">Rated vs. dipped. What IEC 60900 actually means. The case for carrying the right tools before you need them.</div>
+    <div class="card-meta"><span class="card-read">7 min read</span><span class="card-arrow">Read →</span></div>
   </a>
 
-  <a class="post-card" href="blog-apprentice-tools.html" data-cat="electrical">
-    <div class="pc-body">
-      <div class="pc-cat cat-electrical">// Electrical Trade · Tools</div>
-      <div class="pc-title">10 Tools Every Apprentice Electrician Needs on Day One</div>
-      <p class="pc-excerpt">Don't show up empty-handed or with cheap tools. A C-10 electrical contractor tells you exactly what to buy before your first day in the trade.</p>
-      <div class="pc-meta">
-        <span class="pc-read">6 min read</span>
-        <span class="pc-arrow">Read Article →</span>
-      </div>
-    </div>
+  <a class="card" href="blog-wire-management.html" data-cat="tools electrical">
+    <div class="card-cat">// Wire Work · Commercial</div>
+    <div class="card-title">Wire Management on Commercial Jobs</div>
+    <div class="card-desc">The tools that keep wire pulls clean and fast — from the spool to the termination.</div>
+    <div class="card-meta"><span class="card-read">7 min read</span><span class="card-arrow">Read →</span></div>
   </a>
 
+  <a class="card" href="blog-first-year-apprentice.html" data-cat="career electrical">
+    <div class="card-cat">// Apprenticeship · Career</div>
+    <div class="card-title">Your First Year as an Apprentice Electrician</div>
+    <div class="card-desc">What to focus on, what to carry, and what to read. From someone who started at thirty with no hall.</div>
+    <div class="card-meta"><span class="card-read">9 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-c10-license.html" data-cat="licensing electrical">
+    <div class="card-cat">// Licensing · C-10 Contractor</div>
+    <div class="card-title">C-10 License: What the Test Won't Teach You</div>
+    <div class="card-desc">The exam covers code and law. What it doesn't cover is everything that determines whether you stay in business.</div>
+    <div class="card-meta"><span class="card-read">8 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-stationary-engineer-exam.html" data-cat="licensing boiler">
+    <div class="card-cat">// Stationary Engineering · Licensing</div>
+    <div class="card-title">Stationary Engineer Exam Prep Guide</div>
+    <div class="card-desc">What the exam tests, how to prepare, and what you need to know beyond the written component.</div>
+    <div class="card-meta"><span class="card-read">10 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-milwaukee-m18.html" data-cat="tools electrical">
+    <div class="card-cat">// Power Tools · Field Use</div>
+    <div class="card-title">Why I Run Milwaukee M18</div>
+    <div class="card-desc">After 25 years on multiple platforms, here's why M18 is what stayed in the truck.</div>
+    <div class="card-meta"><span class="card-read">7 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-how-to-read-a-boiler.html" data-cat="boiler">
+    <div class="card-cat">// Boiler Operations · Diagnostics</div>
+    <div class="card-title">How to Read a Boiler</div>
+    <div class="card-desc">What the gauges, temperatures, and sounds are telling you — before you touch a single instrument.</div>
+    <div class="card-meta"><span class="card-read">10 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-voltage-tester-2026.html" data-cat="tools electrical">
+    <div class="card-cat">// Test Equipment · Safety</div>
+    <div class="card-title">Best Non-Contact Voltage Tester 2026</div>
+    <div class="card-desc">Two field-tested NCV testers worth carrying — and why you need both, not one.</div>
+    <div class="card-meta"><span class="card-read">6 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-wire-strippers.html" data-cat="tools electrical">
+    <div class="card-cat">// Hand Tools · Wire Work</div>
+    <div class="card-title">Wire Strippers Worth Buying</div>
+    <div class="card-desc">What makes a stripper good for commercial volume — and the options that hold up.</div>
+    <div class="card-meta"><span class="card-read">6 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-hole-saws.html" data-cat="tools electrical">
+    <div class="card-cat">// Power Tool Accessories</div>
+    <div class="card-title">Hole Saws for Electricians</div>
+    <div class="card-desc">Bi-metal vs carbide, what to look for, and why the arbor matters as much as the teeth.</div>
+    <div class="card-meta"><span class="card-read">6 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-digital-calipers.html" data-cat="tools electrical">
+    <div class="card-cat">// Measurement · Field Tools</div>
+    <div class="card-title">Digital Calipers on the Job</div>
+    <div class="card-desc">Why a $15 caliper belongs in every electrician's bag and what you'll actually use it for.</div>
+    <div class="card-meta"><span class="card-read">6 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-service-truck-setup.html" data-cat="career tools electrical">
+    <div class="card-cat">// Business · Service Work</div>
+    <div class="card-title">Setting Up Your First Service Truck</div>
+    <div class="card-desc">What to stock, how to organize, and the tools that need to be there before day one.</div>
+    <div class="card-meta"><span class="card-read">9 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-osha-compliance-tools.html" data-cat="tools electrical">
+    <div class="card-cat">// Safety · OSHA · Compliance</div>
+    <div class="card-title">Electrical Safety Tools That Keep You OSHA Compliant</div>
+    <div class="card-desc">What 1910.333 actually requires, and the tools that satisfy it on energized work.</div>
+    <div class="card-meta"><span class="card-read">8 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-magnetic-wristbands.html" data-cat="tools">
+    <div class="card-cat">// Small Tools · Field Efficiency</div>
+    <div class="card-title">Magnetic Wristbands: Small Tool, Real Difference</div>
+    <div class="card-desc">Every tradesperson eventually owns one. Here's what to look for in one that actually works.</div>
+    <div class="card-meta"><span class="card-read">5 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-rack-a-tiers-system.html" data-cat="tools electrical">
+    <div class="card-cat">// Wire Work · Specialty Tools</div>
+    <div class="card-title">The Rack-A-Tiers System Explained</div>
+    <div class="card-desc">Three tools — Wire Tub, Staple Shark, Croc's Jr. — that cover wire from the spool to the termination.</div>
+    <div class="card-meta"><span class="card-read">7 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-commercial-vs-residential.html" data-cat="career electrical">
+    <div class="card-cat">// Commercial Work · Career</div>
+    <div class="card-title">Commercial vs Residential: What Actually Changes</div>
+    <div class="card-desc">Beyond the code differences — the pace, the environment, and the skill set that doesn't transfer automatically.</div>
+    <div class="card-meta"><span class="card-read">8 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+  <a class="card" href="blog-25-years-in.html" data-cat="tools career electrical boiler">
+    <div class="card-cat">// Field Experience · Career</div>
+    <div class="card-title">25 Years In — Tools I Still Carry</div>
+    <div class="card-desc">After 25 years in the trade, these are the tools that made the cut. And why.</div>
+    <div class="card-meta"><span class="card-read">9 min read</span><span class="card-arrow">Read →</span></div>
+  </a>
+
+</div>
+
+<div class="gear-bar">
+  <p>// Every product linked in these posts is in the shop</p>
+  <a class="btn-gear" href="https://gear.minearworks.com/shop.html">Browse Field-Tested Gear ↗</a>
 </div>
 
 <footer>
   <a href="https://minearworks.com" class="footer-logo">MinearWorks</a>
   <div class="footer-links">
-    <a href="https://minearworks.com/#books">Books</a>
-    <a href="https://gear.minearworks.com">Gear</a>
+    <a href="https://minearworks.com">Home</a>
     <a href="blog-index.html">Blog</a>
-    <a href="mailto:MinearWorks@gmail.com">Contact</a>
+    <a href="https://gear.minearworks.com/shop.html">Gear</a>
+    <a href="https://minearworks.com/#books">Books</a>
+    <a href="mailto:MinearWorks&#64;gmail.com">Contact</a>
   </div>
-  <p class="footer-copy">© MinearWorks · As an Amazon Associate, MinearWorks earns from qualifying purchases · minearworks.com</p>
+  <div class="footer-copy">© 2026 MinearWorks · Doug Minear · C-10 Contractor · Licensed Stationary Engineer</div>
 </footer>
-<a class="floating-cta" href="https://gear.minearworks.com">🔥 Shop Gear</a>
 
 <script>
-function filterPosts(cat, btn) {
-  document.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.post-card').forEach(card => {
-    const c = card.getAttribute('data-cat') || '';
-    card.style.display = (cat === 'all' || c === cat) ? 'block' : 'none';
+function filter(cat, el) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.card').forEach(c => {
+    if (cat === 'all' || c.dataset.cat.includes(cat)) {
+      c.style.display = 'block';
+    } else {
+      c.style.display = 'none';
+    }
   });
 }
 </script>
