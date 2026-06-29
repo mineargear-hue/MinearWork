@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DHMPTVH5X5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DHMPTVH5X5');
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if(a && a.href && a.href.includes('amazon.com')){
+      gtag('event','affiliate_click',{link_url:a.href,page_location:window.location.href});
+    }
+  });
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Stationary Engineer: A Complete Guide to the Profession — 22-chapter reference for licensed engineers, boiler operators, IUOE members, and facilities managers. Available on Amazon Kindle.">
+<meta name="p:domain_verify" content="d749205c137414529951bd3fe96e4a47"/>
+<title>The Stationary Engineer Book | MinearWorks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b1017;
+    --navy2: #1A2332;
+    --gold: #D4AF37;
+    --copper: #B87333;
+    --ember: #E05C1A;
+    --teal: #40C8E0;
+    --text: #c8d0dc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--navy); color: var(--text); font-family: 'Barlow', sans-serif; font-weight: 300; }
+
+  /* NAV */
+  nav {
+    background: var(--navy2);
+    border-bottom: 1px solid var(--gold);
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); letter-spacing: 3px; text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--text); text-decoration: none; font-size: 13px; letter-spacing: 2px; font-family: 'Share Tech Mono', monospace; opacity: 0.7; }
+  .nav-links a:hover { color: var(--gold); opacity: 1; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0d1520 0%, var(--navy) 60%);
+    border-bottom: 1px solid #D4AF3730;
+    padding: 80px 40px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .hero-cover {
+    position: relative;
+  }
+  .cover-img-wrap {
+    background: var(--navy2);
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    padding: 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .cover-badge {
+    display: inline-block;
+    background: var(--copper);
+    color: #fff;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+  .cover-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .cover-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    color: var(--teal);
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .cover-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--copper);
+    margin: 0 auto 24px;
+  }
+  .cover-se-badge {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    background: var(--navy);
+  }
+  .cover-se-badge span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .cover-chapters {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    opacity: 0.6;
+    letter-spacing: 3px;
+  }
+
+  /* HERO TEXT */
+  .hero-text {}
+  .hero-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    color: #fff;
+    line-height: 1.05;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .hero-title em { font-style: normal; color: var(--gold); }
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+  .hero-desc strong { color: var(--gold); font-weight: 600; }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    padding: 16px 40px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+  .btn-primary:hover { background: #F5E070; }
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    padding: 14px 32px;
+    text-decoration: none;
+    border: 1px solid var(--gold);
+    margin-bottom: 12px;
+  }
+  .btn-secondary:hover { background: var(--gold); color: var(--navy); }
+  .kindle-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.5;
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* WHO IT'S FOR */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 40px;
+    border-bottom: 1px solid #D4AF3718;
+  }
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 5px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: #fff;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+  }
+  .section-title em { font-style: normal; color: var(--gold); }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .who-card {
+    background: var(--navy2);
+    border-left: 3px solid var(--gold);
+    padding: 24px;
+  }
+  .who-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .who-card p { font-size: 14px; line-height: 1.6; opacity: 0.8; }
+
+  /* CHAPTERS */
+  .chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 12px;
+  }
+  .chapter-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #D4AF3715;
+  }
+  .chapter-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--copper);
+    letter-spacing: 2px;
+    min-width: 36px;
+    margin-top: 2px;
+  }
+  .chapter-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    background: var(--navy2);
+    border-left: 4px solid var(--gold);
+    padding: 32px 40px;
+    margin: 40px 0;
+    max-width: 800px;
+  }
+  .quote-block blockquote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .quote-attr {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.6;
+    letter-spacing: 2px;
+  }
+
+  /* CTA BOTTOM */
+  .cta-bottom {
+    background: var(--navy2);
+    border-top: 3px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    text-align: center;
+    padding: 70px 40px;
+  }
+  .cta-bottom h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: #fff;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .cta-bottom h2 em { font-style: normal; color: var(--gold); }
+  .cta-bottom p {
+    font-size: 16px;
+    max-width: 540px;
+    margin: 0 auto 32px;
+    opacity: 0.8;
+    line-height: 1.7;
+  }
+  .price-note {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--teal);
+    letter-spacing: 3px;
+    margin-top: 20px;
+    opacity: 0.7;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid #D4AF3720;
+    text-align: center;
+    padding: 30px 40px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.5;
+    letter-spacing: 2px;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 40px 20px; gap: 40px; }
+    .section { padding: 50px 20px; }
+    nav { padding: 14px 20px; }
+    .nav-links { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://minearworks.com" class="nav-logo">MinearWorks</a>
+  <div class="nav-links">
+    <a href="https://minearworks.com">Home</a>
+    <a href="https://gear.minearworks.com">Gear</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="background: linear-gradient(160deg, #0d1520 0%, #0b1017 100%); border-bottom: 1px solid #D4AF3730;">
+  <div class="hero">
+    <div class="hero-cover">
+      <div class="cover-img-wrap">
+        <div class="cover-badge">KINDLE EDITION</div>
+        <div class="cover-se-badge"><span>SE</span></div>
+        <div class="cover-title">THE STATIONARY ENGINEER</div>
+        <div class="cover-sub">A Complete Guide to the Profession</div>
+        <div class="cover-divider"></div>
+        <div class="cover-chapters">22 CHAPTERS · KINDLE EDITION</div>
+      </div>
+    </div>
+    <div class="hero-text">
+      <div class="hero-label">// Professional Reference</div>
+      <h1 class="hero-title">The <em>Complete</em> Guide to the Stationary Engineer Profession</h1>
+      <div class="hero-sub">22 Chapters · Kindle Edition</div>
+      <p class="hero-desc">Written by a licensed stationary engineer with 25 years in the field. Covers everything from boiler licensing and HVAC systems to union membership, career advancement, and facilities management — the reference book the trade never had.</p>
+      <a href="https://www.amazon.com/dp/B0GS3FGF3Z?tag=minearworks-20" class="btn-primary">GET IT ON AMAZON</a>
+      <br>
+      <div class="kindle-note">// Available on Kindle · Read free with Kindle Unlimited</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<div class="section">
+  <div class="section-label">// Audience</div>
+  <h2 class="section-title">Written <em>For</em> The Trade</h2>
+  <div class="who-grid">
+    <div class="who-card">
+      <h3>Licensed Engineers</h3>
+      <p>Class A, B, and C stationary engineers looking for a comprehensive reference that covers the full scope of the profession.</p>
+    </div>
+    <div class="who-card">
+      <h3>Boiler Operators</h3>
+      <p>High-pressure and low-pressure boiler operators who need operational depth beyond the license exam material.</p>
+    </div>
+    <div class="who-card">
+      <h3>IUOE Members</h3>
+      <p>Union members in Local chapters nationwide — covers union structure, apprenticeship programs, and advancement paths.</p>
+    </div>
+    <div class="who-card">
+      <h3>Facilities Managers</h3>
+      <p>Facilities and building engineers managing mechanical systems in hospitals, universities, hotels, and commercial properties.</p>
+    </div>
+    <div class="who-card">
+      <h3>Apprentices</h3>
+      <p>First- and second-year apprentices who need a foundation that goes beyond what the classroom covers.</p>
+    </div>
+    <div class="who-card">
+      <h3>HR & Training Depts</h3>
+      <p>Organizations onboarding new plant operators or building a technical training library for their engineering staff.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTERS -->
+<div class="section">
+  <div class="section-label">// Contents</div>
+  <h2 class="section-title">22 <em>Chapters</em> — Full Scope</h2>
+  <div class="chapters-grid">
+    <div class="chapter-item"><span class="chapter-num">CH 01</span><span class="chapter-name">The Stationary Engineer Profession</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 02</span><span class="chapter-name">Licensing & Certification</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 03</span><span class="chapter-name">Boiler Systems & Operations</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 04</span><span class="chapter-name">High-Pressure Steam Systems</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 05</span><span class="chapter-name">HVAC & Refrigeration</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 06</span><span class="chapter-name">Electrical Systems Overview</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 07</span><span class="chapter-name">Plumbing & Piping Systems</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 08</span><span class="chapter-name">Combustion & Fuel Systems</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 09</span><span class="chapter-name">Water Treatment</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 10</span><span class="chapter-name">Preventive Maintenance</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 11</span><span class="chapter-name">Safety Protocols & Regulations</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 12</span><span class="chapter-name">OSHA & Compliance</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 13</span><span class="chapter-name">Emergency Procedures</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 14</span><span class="chapter-name">Tools & Instrumentation</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 15</span><span class="chapter-name">Building Automation Systems</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 16</span><span class="chapter-name">Energy Management</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 17</span><span class="chapter-name">Union Membership & IUOE</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 18</span><span class="chapter-name">Apprenticeship Programs</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 19</span><span class="chapter-name">Career Advancement</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 20</span><span class="chapter-name">Facilities Management</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 21</span><span class="chapter-name">Institutional & Commercial Operations</span></div>
+    <div class="chapter-item"><span class="chapter-num">CH 22</span><span class="chapter-name">The Future of the Profession</span></div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="section" style="border-bottom: none; padding-bottom: 20px;">
+  <div class="quote-block">
+    <blockquote>"The reference book the stationary engineer profession never had — until now."</blockquote>
+    <div class="quote-attr">// 25 YEARS · LICENSED STATIONARY ENGINEER · C-10 ELECTRICAL CONTRACTOR</div>
+  </div>
+</div>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <h2>Available <em>Now</em> on Amazon</h2>
+  <p>Kindle edition — read on any device. No Kindle hardware required. Free with Kindle Unlimited membership.</p>
+  <a href="https://www.amazon.com/dp/B0GS3FGF3Z?tag=minearworks-20" class="btn-primary">GET IT ON AMAZON →</a>
+  <div class="price-note">// ASIN: B0GS3FGF3Z · KINDLE EDITION · MINEARWORKS</div>
+</div>
+
+<footer>
+  &copy; 2025 MinearWorks · <a href="https://minearworks.com">minearworks.com</a> · All rights reserved
+</footer>
+
+</body>
+</html>
